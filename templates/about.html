@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — SpamShield</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,700;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #030507;
+      color: #e2eaf5;
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .055
+    }
+
+    .o1 {
+      width: 700px;
+      height: 700px;
+      background: #4f8eff;
+      top: -250px;
+      right: -150px;
+      animation: d1 22s ease-in-out infinite
+    }
+
+    .o2 {
+      width: 500px;
+      height: 500px;
+      background: #ff3a5c;
+      bottom: 50px;
+      left: -150px;
+      animation: d2 28s ease-in-out infinite
+    }
+
+    .o3 {
+      width: 350px;
+      height: 350px;
+      background: #00e5a0;
+      top: 45%;
+      left: 38%;
+      animation: d3 20s ease-in-out infinite
+    }
+
+    @keyframes d1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-70px, 90px)
+      }
+    }
+
+    @keyframes d2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(90px, -70px)
+      }
+    }
+
+    @keyframes d3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-50px, 50px)
+      }
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+      background-size: 52px 52px
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 1px solid #1a2535;
+      background: rgba(3, 5, 7, .88);
+      backdrop-filter: blur(24px)
+    }
+
+    .hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #e2eaf5;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 18px
+    }
+
+    .lm {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #4f8eff, #9d6fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      box-shadow: 0 0 22px rgba(79, 142, 255, .38)
+    }
+
+    .logo em {
+      font-style: italic;
+      color: #7aadff
+    }
+
+    nav {
+      display: flex;
+      gap: 2px
+    }
+
+    .nl {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #8899b0;
+      text-decoration: none;
+      transition: all .18s;
+      border: 1px solid transparent
+    }
+
+    .nl:hover {
+      color: #e2eaf5;
+      background: #0f1520;
+      border-color: #1a2535
+    }
+
+    .nl.active {
+      color: #7aadff;
+      background: #0a1830;
+      border-color: rgba(79, 142, 255, .28)
+    }
+
+    .sp {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(0, 229, 160, .07);
+      border: 1px solid rgba(0, 229, 160, .18);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #00e5a0;
+      letter-spacing: .06em
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00e5a0;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 160, .5)
+      }
+
+      60% {
+        box-shadow: 0 0 0 6px rgba(0, 229, 160, 0)
+      }
+    }
+
+    .phead {
+      padding: 40px 0 28px
+    }
+
+    .stitle {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -.5px
+    }
+
+    .ssub {
+      font-size: 13px;
+      color: #8899b0;
+      margin-top: 4px;
+      line-height: 1.6
+    }
+
+    .agrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px
+    }
+
+    .fc {
+      background: #0f1520;
+      border: 1px solid #1a2535;
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 20px
+    }
+
+    .asect {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -.3px;
+      margin-bottom: 14px
+    }
+
+    .atxt {
+      font-size: 13px;
+      color: #8899b0;
+      line-height: 1.75;
+      margin-bottom: 10px
+    }
+
+    .atxt:last-child {
+      margin-bottom: 0
+    }
+
+    /* Architecture flow */
+    .aflow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      gap: 4px
+    }
+
+    .astep {
+      background: #070b0f;
+      border: 1px solid #1a2535;
+      border-radius: 10px;
+      padding: 12px 14px;
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+      transition: all .2s
+    }
+
+    .astep:hover {
+      border-color: #4f8eff;
+      background: #0a1830
+    }
+
+    .asico {
+      font-size: 18px;
+      margin-bottom: 5px
+    }
+
+    .asname {
+      font-size: 11px;
+      font-weight: 600;
+      color: #e2eaf5;
+      font-family: 'Space Grotesk', sans-serif
+    }
+
+    .asdesc {
+      font-size: 10px;
+      color: #4a5a70;
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .aarr {
+      color: #4a5a70;
+      font-size: 16px;
+      padding: 0 2px;
+      flex-shrink: 0
+    }
+
+    /* Metrics table */
+    .mtbl {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px
+    }
+
+    .mtbl th {
+      text-align: left;
+      font-size: 10px;
+      color: #4a5a70;
+      padding: 8px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid #1a2535
+    }
+
+    .mtbl td {
+      padding: 10px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid #1a2535;
+      color: #8899b0
+    }
+
+    .mtbl tr:last-child td {
+      border-bottom: none
+    }
+
+    .mtbl tr:hover td {
+      background: #070b0f
+    }
+
+    .mv {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500
+    }
+
+    .mv.g {
+      color: #00e5a0
+    }
+
+    .mv.b {
+      color: #7aadff
+    }
+
+    /* Tech stack */
+    .tgrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 4px
+    }
+
+    .ti {
+      background: #070b0f;
+      border: 1px solid #1a2535;
+      border-radius: 10px;
+      padding: 14px;
+      transition: all .15s
+    }
+
+    .ti:hover {
+      border-color: #243040;
+      background: #131c28
+    }
+
+    .tn {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2eaf5
+    }
+
+    .tr {
+      font-size: 11px;
+      color: #4a5a70;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 3px
+    }
+
+    /* FAQ */
+    .fqi {
+      border-bottom: 1px solid #1a2535;
+      padding: 16px 0
+    }
+
+    .fqi:last-child {
+      border-bottom: none
+    }
+
+    .fqq {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2eaf5;
+      margin-bottom: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color .15s
+    }
+
+    .fqq:hover {
+      color: #7aadff
+    }
+
+    .fqa {
+      font-size: 13px;
+      color: #8899b0;
+      line-height: 1.7
+    }
+
+    /* CTA */
+    .ctabox {
+      background: linear-gradient(135deg, #0a1830, rgba(157, 111, 255, .06));
+      border: 1px solid rgba(79, 142, 255, .2);
+      border-radius: 20px;
+      padding: 36px;
+      text-align: center;
+      margin-bottom: 60px
+    }
+
+    .ctat {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -.5px;
+      margin-bottom: 10px
+    }
+
+    .ctas {
+      font-size: 14px;
+      color: #8899b0;
+      margin-bottom: 24px;
+      line-height: 1.6
+    }
+
+    .ctab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4f8eff, #9d6fff);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 20px rgba(79, 142, 255, .3);
+      transition: all .2s
+    }
+
+    .ctab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(79, 142, 255, .45)
+    }
+
+    code {
+      color: #7aadff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      background: #0a1830;
+      padding: 2px 6px;
+      border-radius: 4px
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #030507
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #243040;
+      border-radius: 3px
+    }
+
+    @media(max-width:680px) {
+
+      .agrid,
+      .tgrid {
+        grid-template-columns: 1fr
+      }
+
+      .aflow {
+        flex-direction: column
+      }
+
+      .aarr {
+        transform: rotate(90deg)
+      }
+
+      .hdr {
+        padding: 0 14px
+      }
+
+      .wrap {
+        padding: 0 14px
+      }
+
+      nav .nl span {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-orbs">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+  </div>
+  <div class="bg-grid"></div>
+  <header>
+    <div class="hdr">
+      <a class="logo" href="/">
+        <div class="lm">🛡</div>Spam<em>Shield</em>
+      </a>
+      <nav>
+        <a class="nl" href="/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          </svg><span>Home</span></a>
+        <a class="nl" href="/detect"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg><span>Detect</span></a>
+        <a class="nl" href="/analytics"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg><span>Analytics</span></a>
+        <a class="nl active" href="/about"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg><span>About</span></a>
+      </nav>
+      <div class="sp">
+        <div class="dot"></div>MODEL ACTIVE
+      </div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="phead">
+      <div class="stitle">About SpamShield</div>
+      <div class="ssub">Deep learning powered email classification using Bidirectional LSTM.</div>
+    </div>
+    <div class="agrid">
+      <div class="fc" style="margin-bottom:0">
+        <div class="asect">What is SpamShield?</div>
+        <p class="atxt">SpamShield is a full-stack web application that uses a Bidirectional LSTM (BiLSTM) deep learning
+          model to classify emails as spam or legitimate (ham).</p>
+        <p class="atxt">Unlike rule-based spam filters, the BiLSTM model learns patterns from real email data —
+          understanding context, word order, and subtle linguistic cues.</p>
+        <p class="atxt">Trained on 5,576 real SMS messages from the UCI SMS Spam Collection dataset, achieving over 97%
+          F1-score.</p>
+      </div>
+      <div class="fc" style="margin-bottom:0">
+        <div class="asect">Model Performance</div>
+        <table class="mtbl">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Ham</th>
+              <th>Spam</th>
+              <th>Overall</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Precision</td>
+              <td class="mv b">98.2%</td>
+              <td class="mv b">96.4%</td>
+              <td class="mv b">97.3%</td>
+            </tr>
+            <tr>
+              <td>Recall</td>
+              <td class="mv g">99.1%</td>
+              <td class="mv g">93.8%</td>
+              <td class="mv g">96.5%</td>
+            </tr>
+            <tr>
+              <td>F1 Score</td>
+              <td class="mv g">98.6%</td>
+              <td class="mv g">95.1%</td>
+              <td class="mv g">97.8%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="fc">
+      <div class="asect">Model Architecture</div>
+      <div class="aflow">
+        <div class="astep">
+          <div class="asico">📝</div>
+          <div class="asname">Input</div>
+          <div class="asdesc">Raw email</div>
+        </div>
+        <span class="aarr">→</span>
+        <div class="astep">
+          <div class="asico">🔤</div>
+          <div class="asname">Tokenize</div>
+          <div class="asdesc">Word split</div>
+        </div>
+        <span class="aarr">→</span>
+        <div class="astep">
+          <div class="asico">📊</div>
+          <div class="asname">Embedding</div>
+          <div class="asdesc">128-dim</div>
+        </div>
+        <span class="aarr">→</span>
+        <div class="astep">
+          <div class="asico">🧠</div>
+          <div class="asname">BiLSTM</div>
+          <div class="asdesc">2 layers</div>
+        </div>
+        <span class="aarr">→</span>
+        <div class="astep">
+          <div class="asico">💧</div>
+          <div class="asname">Dropout</div>
+          <div class="asdesc">0.4 rate</div>
+        </div>
+        <span class="aarr">→</span>
+        <div class="astep">
+          <div class="asico">🎯</div>
+          <div class="asname">Classify</div>
+          <div class="asdesc">Spam / Ham</div>
+        </div>
+      </div>
+      <p class="atxt">The BiLSTM reads the email both forward and backward simultaneously, capturing context from both
+        directions. This helps catch spam signals that only make sense in context.</p>
+    </div>
+    <div class="fc">
+      <div class="asect">Tech Stack</div>
+      <div class="tgrid">
+        <div class="ti">
+          <div class="tn">PyTorch 2.x</div>
+          <div class="tr">Deep learning framework</div>
+        </div>
+        <div class="ti">
+          <div class="tn">BiLSTM</div>
+          <div class="tr">Neural network model</div>
+        </div>
+        <div class="ti">
+          <div class="tn">Flask</div>
+          <div class="tr">Web server & API</div>
+        </div>
+        <div class="ti">
+          <div class="tn">SQLite</div>
+          <div class="tr">Prediction history</div>
+        </div>
+        <div class="ti">
+          <div class="tn">scikit-learn</div>
+          <div class="tr">Metrics & data splitting</div>
+        </div>
+        <div class="ti">
+          <div class="tn">Python 3.13</div>
+          <div class="tr">Runtime</div>
+        </div>
+      </div>
+    </div>
+    <div class="fc">
+      <div class="asect">FAQ</div>
+      <div class="fqi">
+        <div class="fqq">Why BiLSTM instead of BERT?</div>
+        <div class="fqa">With 5,576 training samples, BERT (110M parameters) would overfit severely. BiLSTM with ~2.4M
+          parameters is the sweet spot — powerful enough to learn spam patterns, small enough to generalize.</div>
+      </div>
+      <div class="fqi">
+        <div class="fqq">How does it handle new spam tactics?</div>
+        <div class="fqa">The model learns word-level patterns and context rather than specific phrases, so it
+          generalizes to unseen spam. You can retrain with new data using <code>python app.py --train</code>.</div>
+      </div>
+      <div class="fqi">
+        <div class="fqq">Is email data stored?</div>
+        <div class="fqa">Yes — predictions are stored locally in <code>history.db</code> on your machine. Nothing is
+          sent to any external server.</div>
+      </div>
+      <div class="fqi">
+        <div class="fqq">How accurate is it?</div>
+        <div class="fqa">The model achieves ~97.8% F1-score on the test set. Very short or ambiguous emails may score
+          near 50% confidence — the model is honest about uncertainty.</div>
+      </div>
+    </div>
+    <div class="ctabox">
+      <div class="ctat">Ready to detect spam?</div>
+      <div class="ctas">Paste any email body and get an instant classification result.</div>
+      <a href="/detect" class="ctab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>Start Detecting</a>
+    </div>
+  </div>
+</body>
+
+</html>

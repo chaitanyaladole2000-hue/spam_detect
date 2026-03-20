@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analytics & History — SpamShield</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,700;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Space Grotesk',sans-serif;background:#030507;color:#e2eaf5;min-height:100vh;overflow-x:hidden}
+.bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.055}
+.o1{width:700px;height:700px;background:#4f8eff;top:-250px;right:-150px;animation:d1 22s ease-in-out infinite}
+.o2{width:500px;height:500px;background:#ff3a5c;bottom:50px;left:-150px;animation:d2 28s ease-in-out infinite}
+.o3{width:350px;height:350px;background:#00e5a0;top:45%;left:38%;animation:d3 20s ease-in-out infinite}
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,90px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,-70px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,50px)}}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:52px 52px}
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 24px}
+
+/* ── Header ── */
+header{position:sticky;top:0;z-index:200;border-bottom:1px solid #1a2535;background:rgba(3,5,7,.88);backdrop-filter:blur(24px)}
+.hdr{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1280px;margin:0 auto;padding:0 24px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#e2eaf5;font-family:'Fraunces',serif;font-weight:700;font-size:18px}
+.lm{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#4f8eff,#9d6fff);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 22px rgba(79,142,255,.38)}
+.logo em{font-style:italic;color:#7aadff}
+nav{display:flex;gap:2px}
+.nl{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;color:#8899b0;text-decoration:none;transition:all .18s;border:1px solid transparent}
+.nl:hover{color:#e2eaf5;background:#0f1520;border-color:#1a2535}
+.nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.28)}
+.pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.18);font-family:'JetBrains Mono',monospace;font-size:10px;color:#00e5a0;letter-spacing:.06em}
+.dot{width:6px;height:6px;border-radius:50%;background:#00e5a0;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}60%{box-shadow:0 0 0 6px rgba(0,229,160,0)}}
+
+/* ── Page head ── */
+.phead{padding:32px 0 22px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.stitle{font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:-.5px}
+.ssub{font-size:13px;color:#8899b0;margin-top:4px;line-height:1.6}
+.rbtn{width:30px;height:30px;border-radius:8px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.rbtn:hover{border-color:#4f8eff;color:#7aadff}
+
+/* ── Stat cards ── */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.sc{background:#0f1520;border:1px solid #1a2535;border-radius:18px;padding:20px;position:relative;overflow:hidden;transition:all .2s}
+.sc:hover{border-color:#243040;transform:translateY(-2px)}
+.sc::after{content:attr(data-i);position:absolute;right:12px;bottom:8px;font-size:32px;opacity:.07}
+.snum{font-family:'Fraunces',serif;font-weight:700;font-size:32px;line-height:1;letter-spacing:-1px}
+.slbl{font-size:11px;color:#8899b0;margin-top:5px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+
+/* ── Main split: left=analytics, right=history ── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:60px}
+
+/* ── Left col: charts + model ── */
+.cc{background:#0f1520;border:1px solid #1a2535;border-radius:18px;padding:20px;margin-bottom:14px}
+.cc:last-child{margin-bottom:0}
+.ctitle{font-family:'Fraunces',serif;font-weight:700;font-size:14px;margin-bottom:18px;letter-spacing:-.2px}
+
+/* Donut */
+.dwrap{display:flex;align-items:center;gap:22px}
+.dleg{display:flex;flex-direction:column;gap:10px}
+.dli{display:flex;align-items:center;gap:8px}
+.dld{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.dln{font-size:11px;color:#8899b0;font-family:'JetBrains Mono',monospace}
+.dlv{font-family:'Fraunces',serif;font-weight:700;font-size:15px}
+
+/* Confidence bars */
+.blist{display:flex;flex-direction:column;gap:10px}
+.brow{display:flex;align-items:center;gap:9px}
+.blbl{font-size:11px;color:#8899b0;font-family:'JetBrains Mono',monospace;width:70px;flex-shrink:0}
+.btrack{flex:1;height:7px;background:#070b0f;border-radius:4px;overflow:hidden;border:1px solid #1a2535}
+.bfill{height:100%;border-radius:4px}
+.bpct{font-size:11px;font-family:'JetBrains Mono',monospace;color:#8899b0;width:32px;text-align:right;flex-shrink:0}
+
+/* Model specs */
+.spgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.spi{background:#070b0f;border:1px solid #1a2535;border-radius:10px;padding:12px}
+.spv{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#7aadff}
+.spl{font-size:9px;color:#4a5a70;margin-top:2px;letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.accsect{margin-top:16px;padding-top:16px;border-top:1px solid #1a2535}
+.acclbl{display:flex;justify-content:space-between;font-size:11px;font-family:'JetBrains Mono',monospace;color:#8899b0;margin-bottom:7px}
+.acctrack{height:10px;background:#070b0f;border-radius:5px;overflow:hidden;border:1px solid #1a2535}
+.accfill{height:100%;border-radius:5px;background:linear-gradient(90deg,#00e5a0,#4f8eff);box-shadow:0 0 12px rgba(0,229,160,.3);transition:width 1s cubic-bezier(.4,0,.2,1)}
+
+/* ── Right col: history ── */
+.hcol{display:flex;flex-direction:column;gap:0}
+.hhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.htitle{font-family:'Fraunces',serif;font-weight:700;font-size:15px;letter-spacing:-.2px}
+.hcontrols{display:flex;align-items:center;gap:6px}
+.hfrow{display:flex;gap:4px}
+.hfbtn{font-size:10px;padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid #1a2535;background:transparent;color:#8899b0;font-family:'JetBrains Mono',monospace;transition:all .14s}
+.hfbtn.active{background:#131c28;color:#e2eaf5;border-color:#243040}
+.hfbtn:hover:not(.active){color:#e2eaf5;border-color:#243040}
+
+/* Summary chips */
+.chips{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.chip{padding:5px 11px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;display:flex;align-items:center;gap:5px}
+.chip.tot{background:#0f1520;border:1px solid #1a2535;color:#8899b0}
+.chip.spc{background:#1a0810;border:1px solid rgba(255,58,92,.2);color:#ff6b85}
+.chip.hmc{background:#001a12;border:1px solid rgba(0,229,160,.15);color:#00e5a0}
+.chipv{font-size:13px;font-weight:600;font-family:'Space Grotesk',sans-serif}
+
+/* Scrollable list */
+.hscroll{overflow-y:auto;display:flex;flex-direction:column;gap:7px;max-height:calc(100vh - 300px)}
+.hscroll::-webkit-scrollbar{width:4px}
+.hscroll::-webkit-scrollbar-track{background:transparent}
+.hscroll::-webkit-scrollbar-thumb{background:#1a2535;border-radius:2px}
+
+.hi{display:flex;align-items:center;gap:11px;background:#0f1520;border:1px solid #1a2535;border-radius:12px;padding:12px 14px;transition:all .15s;position:relative;overflow:hidden}
+.hi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.hi.spam::before{background:#ff3a5c}
+.hi.ham::before{background:#00e5a0}
+.hi:hover{border-color:#243040;background:#131c28}
+.hbadge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:7px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;flex-shrink:0;text-transform:uppercase}
+.hbadge.spam{background:rgba(255,58,92,.12);color:#ff3a5c;border:1px solid rgba(255,58,92,.2)}
+.hbadge.ham{background:rgba(0,229,160,.1);color:#00e5a0;border:1px solid rgba(0,229,160,.15)}
+.hc{flex:1;min-width:0}
+.hprev{font-size:12px;color:#e2eaf5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdate{font-size:10px;color:#4a5a70;font-family:'JetBrains Mono',monospace;margin-top:2px}
+.hright{text-align:right;flex-shrink:0}
+.hsc{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500}
+.hsc.spam{color:#ff3a5c}.hsc.ham{color:#00e5a0}
+.hbar{width:50px;height:3px;background:#1a2535;border-radius:2px;margin-top:4px;overflow:hidden}
+.hbf{height:100%;border-radius:2px}
+.hbf.spam{background:#ff3a5c}.hbf.ham{background:#00e5a0}
+.dbtn{background:none;border:none;color:#4a5a70;cursor:pointer;padding:4px;border-radius:5px;opacity:0;transition:all .15s;flex-shrink:0;font-size:12px}
+.hi:hover .dbtn{opacity:1}
+.dbtn:hover{color:#ff3a5c;background:#1a0810}
+.estate{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px;gap:10px;border:2px dashed #1a2535;border-radius:14px}
+.estate p{font-size:12px;color:#4a5a70;font-family:'JetBrains Mono',monospace}
+.estate a{color:#7aadff;text-decoration:none;font-size:12px;font-family:'JetBrains Mono',monospace}
+.estate a:hover{text-decoration:underline}
+
+/* Pagination */
+.pgn{display:flex;justify-content:center;gap:5px;margin-top:12px}
+.pgbtn{width:28px;height:28px;border-radius:7px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;font-size:11px;font-family:'JetBrains Mono',monospace;transition:all .15s}
+.pgbtn.active{background:#4f8eff;color:#fff;border-color:#4f8eff}
+.pgbtn:hover:not(.active){border-color:#4f8eff;color:#7aadff}
+
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fu .45s ease both}
+.fu2{animation:fu .45s .1s ease both}
+.fu3{animation:fu .45s .2s ease both}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#030507}::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}
+@media(max-width:900px){.split{grid-template-columns:1fr}.sgrid{grid-template-columns:1fr 1fr}.spgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.sgrid{grid-template-columns:1fr 1fr}.hdr{padding:0 14px}.wrap{padding:0 14px}nav .nl span{display:none}}
+</style>
+</head>
+<body>
+<div class="bg-orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+<div class="bg-grid"></div>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><div class="lm">🛡</div>Spam<em>Shield</em></a>
+    <nav>
+      <a class="nl" href="/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Home</span></a>
+      <a class="nl" href="/detect"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>Detect</span></a>
+      <a class="nl active" href="/analytics"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Analytics</span></a>
+      <a class="nl" href="/about"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>About</span></a>
+    </nav>
+    <div class="pill"><div class="dot"></div>MODEL ACTIVE</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="phead fu">
+    <div>
+      <div class="stitle">Analytics & History</div>
+      <div class="ssub">Model performance, detection statistics, and all past predictions.</div>
+    </div>
+    <button class="rbtn" onclick="loadAll()" title="Refresh">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+    </button>
+  </div>
+
+  <!-- ── Stat cards ── -->
+  <div class="sgrid fu2">
+    <div class="sc" data-i="📧"><div class="snum" style="color:#f5c842" id="s1">—</div><div class="slbl">EMAILS ANALYZED</div></div>
+    <div class="sc" data-i="🚨"><div class="snum" style="color:#ff6b85" id="s2">—</div><div class="slbl">SPAM DETECTED</div></div>
+    <div class="sc" data-i="✅"><div class="snum" style="color:#00e5a0" id="s3">—</div><div class="slbl">HAM (LEGIT)</div></div>
+    <div class="sc" data-i="🎯"><div class="snum" style="color:#7aadff" id="s4">—</div><div class="slbl">MODEL VAL F1</div></div>
+  </div>
+
+  <!-- ── Main split ── -->
+  <div class="split fu3">
+
+    <!-- Left: Analytics -->
+    <div>
+      <!-- Donut + bar charts side by side -->
+      <div class="cc">
+        <div class="ctitle">Spam vs Ham Ratio</div>
+        <div class="dwrap">
+          <svg width="110" height="110" viewBox="0 0 110 110">
+            <circle cx="55" cy="55" r="42" fill="none" stroke="#070b0f" stroke-width="16"/>
+            <circle id="dh" cx="55" cy="55" r="42" fill="none" stroke="#00e5a0" stroke-width="16"
+              stroke-dasharray="0 264" stroke-dashoffset="66" stroke-linecap="round"
+              style="transition:stroke-dasharray 1s ease;filter:drop-shadow(0 0 5px rgba(0,229,160,.4))"/>
+            <circle id="dsp" cx="55" cy="55" r="42" fill="none" stroke="#ff3a5c" stroke-width="16"
+              stroke-dasharray="0 264" stroke-dashoffset="66" stroke-linecap="round"
+              style="transition:stroke-dasharray 1s ease;filter:drop-shadow(0 0 5px rgba(255,58,92,.4))"/>
+            <text id="dpct" x="55" y="51" text-anchor="middle" font-family="Fraunces,serif" font-weight="700" font-size="16" fill="#e2eaf5">—</text>
+            <text x="55" y="64" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#8899b0">HAM</text>
+          </svg>
+          <div class="dleg">
+            <div class="dli"><div class="dld" style="background:#00e5a0"></div><div><div class="dlv" id="lh">—</div><div class="dln">HAM / LEGIT</div></div></div>
+            <div class="dli"><div class="dld" style="background:#ff3a5c"></div><div><div class="dlv" id="ls">—</div><div class="dln">SPAM</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="ctitle">Confidence Distribution</div>
+        <div class="blist">
+          <div class="brow"><span class="blbl">90–100%</span><div class="btrack"><div class="bfill" style="width:78%;background:#00e5a0;box-shadow:0 0 7px rgba(0,229,160,.3)"></div></div><span class="bpct" style="color:#00e5a0">78%</span></div>
+          <div class="brow"><span class="blbl">70–90%</span><div class="btrack"><div class="bfill" style="width:13%;background:#4f8eff"></div></div><span class="bpct">13%</span></div>
+          <div class="brow"><span class="blbl">50–70%</span><div class="btrack"><div class="bfill" style="width:6%;background:#f5c842"></div></div><span class="bpct">6%</span></div>
+          <div class="brow"><span class="blbl">&lt; 50%</span><div class="btrack"><div class="bfill" style="width:3%;background:#ff3a5c"></div></div><span class="bpct" style="color:#ff3a5c">3%</span></div>
+        </div>
+      </div>
+
+      <div class="cc">
+        <div class="ctitle">Model Info — BiLSTM</div>
+        <div class="spgrid" id="spgrid">
+          <div class="spi"><div class="spv">BiLSTM</div><div class="spl">Architecture</div></div>
+          <div class="spi"><div class="spv" id="sp-p">—</div><div class="spl">Parameters</div></div>
+          <div class="spi"><div class="spv" id="sp-v">—</div><div class="spl">Vocab Size</div></div>
+          <div class="spi"><div class="spv" id="sp-f">—</div><div class="spl">Val F1</div></div>
+          <div class="spi"><div class="spv">~15 MB</div><div class="spl">Model Size</div></div>
+          <div class="spi"><div class="spv" id="sp-d">—</div><div class="spl">Device</div></div>
+        </div>
+        <div class="accsect">
+          <div class="acclbl"><span>ACCURACY</span><span id="accval">—</span></div>
+          <div class="acctrack"><div class="accfill" id="accfill" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: History -->
+    <div class="hcol">
+      <div class="hhead">
+        <div class="htitle">Detection History</div>
+        <div class="hcontrols">
+          <div class="hfrow">
+            <button class="hfbtn active" onclick="setF('all',this)">All</button>
+            <button class="hfbtn" onclick="setF('spam',this)">Spam</button>
+            <button class="hfbtn" onclick="setF('ham',this)">Ham</button>
+          </div>
+          <button class="rbtn" onclick="loadH()" title="Refresh">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="chips">
+        <div class="chip tot"><span class="chipv" id="ct">—</span>total</div>
+        <div class="chip spc"><span class="chipv" id="cs">—</span>spam</div>
+        <div class="chip hmc"><span class="chipv" id="ch">—</span>ham</div>
+      </div>
+
+      <div class="hscroll" id="hlist"></div>
+      <div class="pgn" id="pgn"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let cf='all', cp=1, tp=1;
+
+function setF(f,b){
+  cf=f; cp=1;
+  document.querySelectorAll('.hfbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  loadH();
+}
+
+function loadAll(){ loadStats(); loadH(); }
+
+function loadStats(){
+  fetch('/stats').then(r=>r.json()).then(d=>{
+    document.getElementById('s1').textContent = d.total;
+    document.getElementById('s2').textContent = d.spam;
+    document.getElementById('s3').textContent = d.ham;
+    document.getElementById('ct').textContent = d.total;
+    document.getElementById('cs').textContent = d.spam;
+    document.getElementById('ch').textContent = d.ham;
+
+    const mi = d.model||{};
+    document.getElementById('s4').textContent = mi.val_f1?(mi.val_f1*100).toFixed(1)+'%':'—';
+
+    /* Donut */
+    const t=d.total||1, c=264, hp=d.ham/t, ha=c*hp, sa=c*(1-hp);
+    document.getElementById('dh').setAttribute('stroke-dasharray', ha+' '+(c-ha));
+    document.getElementById('dsp').setAttribute('stroke-dasharray', sa+' '+(c-sa));
+    document.getElementById('dsp').setAttribute('stroke-dashoffset', 66-ha);
+    document.getElementById('dpct').textContent = Math.round(hp*100)+'%';
+    document.getElementById('lh').textContent = d.ham;
+    document.getElementById('ls').textContent = d.spam;
+
+    /* Model specs */
+    if(mi.parameters) document.getElementById('sp-p').textContent=(+mi.parameters).toLocaleString();
+    if(mi.vocab_size)  document.getElementById('sp-v').textContent=(+mi.vocab_size).toLocaleString();
+    if(mi.val_f1)      document.getElementById('sp-f').textContent=(mi.val_f1*100).toFixed(2)+'%';
+    if(mi.device)      document.getElementById('sp-d').textContent=mi.device;
+
+    /* Accuracy bar */
+    if(mi.val_f1){
+      const pct=(mi.val_f1*100).toFixed(1);
+      document.getElementById('accval').textContent=pct+'%';
+      setTimeout(()=>{ document.getElementById('accfill').style.width=pct+'%'; },200);
+    }
+  });
+}
+
+function loadH(){
+  fetch('/history?per_page=25&page='+cp+(cf!=='all'?'&label='+cf:'')).then(r=>r.json()).then(d=>{
+    tp=Math.ceil(d.total/25);
+    renderList(d.predictions);
+    renderPgn();
+  });
+}
+
+function renderList(rows){
+  const l=document.getElementById('hlist');
+  if(!rows.length){
+    l.innerHTML=`<div class="estate">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4a5a70" stroke-width="1"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+      <p>No predictions yet</p>
+      <a href="/detect">Analyze your first email →</a>
+    </div>`;
+    return;
+  }
+  l.innerHTML='';
+  rows.forEach(p=>{
+    const pct=Math.round(p.spam_score*100);
+    const el=document.createElement('div');
+    el.className='hi '+p.label;
+    el.innerHTML=`
+      <span class="hbadge ${p.label}">${p.label}</span>
+      <div class="hc">
+        <div class="hprev">${(p.body||'').slice(0,70)}</div>
+        <div class="hdate">${(p.created_at||'').slice(0,16).replace('T',' ')}</div>
+      </div>
+      <div class="hright">
+        <div class="hsc ${p.label}">${pct}% spam</div>
+        <div class="hbar"><div class="hbf ${p.label}" style="width:${pct}%"></div></div>
+      </div>
+      <button class="dbtn" onclick="delI(${p.id},this)" title="Delete">✕</button>`;
+    l.appendChild(el);
+  });
+}
+
+function renderPgn(){
+  const pg=document.getElementById('pgn');
+  if(tp<=1){ pg.innerHTML=''; return; }
+  pg.innerHTML='';
+  for(let i=1;i<=tp;i++){
+    const b=document.createElement('button');
+    b.className='pgbtn'+(i===cp?' active':'');
+    b.textContent=i;
+    b.onclick=()=>{ cp=i; loadH(); };
+    pg.appendChild(b);
+  }
+}
+
+function delI(id,btn){
+  fetch('/history/'+id,{method:'DELETE'}).then(()=>{
+    btn.closest('.hi').remove();
+    loadStats();
+  });
+}
+
+/* Init */
+loadAll();
+</script>
+</body>
+</html>

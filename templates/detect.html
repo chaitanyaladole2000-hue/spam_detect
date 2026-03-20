@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Detect — SpamShield</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,700;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #030507;
+      color: #e2eaf5;
+      min-height: 100vh;
+      overflow-x: hidden
+    }
+
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .055
+    }
+
+    .o1 {
+      width: 700px;
+      height: 700px;
+      background: #4f8eff;
+      top: -250px;
+      right: -150px;
+      animation: d1 22s ease-in-out infinite
+    }
+
+    .o2 {
+      width: 500px;
+      height: 500px;
+      background: #ff3a5c;
+      bottom: 50px;
+      left: -150px;
+      animation: d2 28s ease-in-out infinite
+    }
+
+    .o3 {
+      width: 350px;
+      height: 350px;
+      background: #00e5a0;
+      top: 45%;
+      left: 38%;
+      animation: d3 20s ease-in-out infinite
+    }
+
+    @keyframes d1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-70px, 90px)
+      }
+    }
+
+    @keyframes d2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(90px, -70px)
+      }
+    }
+
+    @keyframes d3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-50px, 50px)
+      }
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255, 255, 255, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .02) 1px, transparent 1px);
+      background-size: 52px 52px
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      border-bottom: 1px solid #1a2535;
+      background: rgba(3, 5, 7, .88);
+      backdrop-filter: blur(24px)
+    }
+
+    .hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #e2eaf5;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 18px
+    }
+
+    .lm {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #4f8eff, #9d6fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      box-shadow: 0 0 22px rgba(79, 142, 255, .38)
+    }
+
+    .logo em {
+      font-style: italic;
+      color: #7aadff
+    }
+
+    nav {
+      display: flex;
+      gap: 2px
+    }
+
+    .nl {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #8899b0;
+      text-decoration: none;
+      transition: all .18s;
+      border: 1px solid transparent
+    }
+
+    .nl:hover {
+      color: #e2eaf5;
+      background: #0f1520;
+      border-color: #1a2535
+    }
+
+    .nl.active {
+      color: #7aadff;
+      background: #0a1830;
+      border-color: rgba(79, 142, 255, .28)
+    }
+
+    .sp {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(0, 229, 160, .07);
+      border: 1px solid rgba(0, 229, 160, .18);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #00e5a0;
+      letter-spacing: .06em
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00e5a0;
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 160, .5)
+      }
+
+      60% {
+        box-shadow: 0 0 0 6px rgba(0, 229, 160, 0)
+      }
+    }
+
+    .phead {
+      padding: 40px 0 28px
+    }
+
+    .stitle {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -.5px
+    }
+
+    .ssub {
+      font-size: 13px;
+      color: #8899b0;
+      margin-top: 4px;
+      line-height: 1.6
+    }
+
+    /* Grid */
+    .dgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-bottom: 60px
+    }
+
+    /* Input card */
+    .card {
+      background: #0f1520;
+      border: 1px solid #1a2535;
+      border-radius: 20px;
+      overflow: hidden
+    }
+
+    .ch {
+      padding: 20px 22px 0;
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -.2px
+    }
+
+    .cb {
+      padding: 16px 22px 22px
+    }
+
+    .srow {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap
+    }
+
+    .sbtn {
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .03em;
+      transition: all .16s;
+      border: 1px solid #243040;
+      background: transparent;
+      color: #8899b0
+    }
+
+    .sbtn:hover {
+      background: #131c28;
+      color: #e2eaf5;
+      border-color: #243040
+    }
+
+    .sbtn.sp-ex:hover {
+      border-color: rgba(255, 58, 92, .4);
+      color: #ff6b85
+    }
+
+    .sbtn.hm-ex:hover {
+      border-color: rgba(0, 229, 160, .4);
+      color: #00e5a0
+    }
+
+    .flabel {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      color: #4a5a70;
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .twrap {
+      position: relative
+    }
+
+    .tarea {
+      width: 100%;
+      background: #070b0f;
+      border: 1px solid #1a2535;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #e2eaf5;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      transition: all .18s;
+      resize: none;
+      outline: none
+    }
+
+    .tarea:focus {
+      border-color: #4f8eff;
+      background: #0c1117;
+      box-shadow: 0 0 0 3px rgba(79, 142, 255, .1)
+    }
+
+    .tarea::placeholder {
+      color: #4a5a70
+    }
+
+    .ccount {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #4a5a70;
+      pointer-events: none
+    }
+
+    .abtn {
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #4f8eff, #9d6fff);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all .22s;
+      box-shadow: 0 4px 24px rgba(79, 142, 255, .28);
+      margin-top: 14px
+    }
+
+    .abtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(79, 142, 255, .45)
+    }
+
+    .abtn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      transform: none
+    }
+
+    .spin {
+      animation: rot .7s linear infinite
+    }
+
+    @keyframes rot {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* Empty state */
+    .rempty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 440px;
+      gap: 12px;
+      border: 2px dashed #1a2535;
+      border-radius: 20px
+    }
+
+    .rempty p {
+      font-size: 13px;
+      color: #4a5a70;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    /* Analyzing */
+    .rload {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 440px;
+      gap: 16px
+    }
+
+    .rload.show {
+      display: flex
+    }
+
+    .sring {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid #1a2535;
+      border-top-color: #4f8eff;
+      animation: rot .8s linear infinite
+    }
+
+    .rload p {
+      font-size: 12px;
+      color: #8899b0;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    /* Result */
+    .rcard {
+      display: none
+    }
+
+    .rcard.show {
+      display: block;
+      background: #0f1520;
+      border: 1px solid #1a2535;
+      border-radius: 20px;
+      overflow: hidden;
+      animation: fu .4s ease
+    }
+
+    @keyframes fu {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .rbanner {
+      padding: 24px 22px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px
+    }
+
+    .rbanner.spam {
+      background: linear-gradient(135deg, #1a0810, rgba(26, 8, 16, .8));
+      border-bottom: 1px solid rgba(255, 58, 92, .15)
+    }
+
+    .rbanner.ham {
+      background: linear-gradient(135deg, #001a12, rgba(0, 26, 18, .8));
+      border-bottom: 1px solid rgba(0, 229, 160, .12)
+    }
+
+    .rbadge {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px
+    }
+
+    .rbadge.spam {
+      background: rgba(255, 58, 92, .15);
+      border: 1px solid rgba(255, 58, 92, .2)
+    }
+
+    .rbadge.ham {
+      background: rgba(0, 229, 160, .12);
+      border: 1px solid rgba(0, 229, 160, .15)
+    }
+
+    .rlabel {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: -.5px;
+      line-height: 1
+    }
+
+    .rlabel.spam {
+      color: #ff3a5c
+    }
+
+    .rlabel.ham {
+      color: #00e5a0
+    }
+
+    .rconf {
+      font-size: 12px;
+      color: #8899b0;
+      margin-top: 5px;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .gsect {
+      padding: 18px 22px;
+      border-bottom: 1px solid #1a2535
+    }
+
+    .glbls {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #4a5a70;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 8px;
+      letter-spacing: .05em
+    }
+
+    .gtrack {
+      height: 10px;
+      background: #070b0f;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #1a2535
+    }
+
+    .gfill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width .9s cubic-bezier(.4, 0, .2, 1)
+    }
+
+    .gfill.spam {
+      background: linear-gradient(90deg, #ff6b85, #ff3a5c);
+      box-shadow: 0 0 14px rgba(255, 58, 92, .5)
+    }
+
+    .gfill.ham {
+      background: linear-gradient(90deg, #33ffb8, #00e5a0);
+      box-shadow: 0 0 14px rgba(0, 229, 160, .5)
+    }
+
+    .gvals {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #4a5a70;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 6px
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 16px 22px;
+      gap: 10px;
+      border-bottom: 1px solid #1a2535
+    }
+
+    .tile {
+      background: #070b0f;
+      border: 1px solid #1a2535;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center
+    }
+
+    .tv {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -.5px
+    }
+
+    .tv.sp {
+      color: #ff3a5c
+    }
+
+    .tv.hm {
+      color: #00e5a0
+    }
+
+    .tv.ac {
+      color: #7aadff
+    }
+
+    .tl {
+      font-size: 9px;
+      color: #4a5a70;
+      margin-top: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .06em
+    }
+
+    .rsect {
+      padding: 16px 22px;
+      border-bottom: 1px solid #1a2535
+    }
+
+    .rlbl2 {
+      font-size: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #4a5a70;
+      margin-bottom: 10px;
+      letter-spacing: .06em
+    }
+
+    .rsteps {
+      display: flex;
+      gap: 4px
+    }
+
+    .rstep {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      background: #1a2535;
+      transition: all .5s
+    }
+
+    .fbsect {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .fblbl {
+      font-size: 11px;
+      color: #4a5a70;
+      font-family: 'JetBrains Mono', monospace
+    }
+
+    .fbbtn {
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1px solid #243040;
+      background: transparent;
+      color: #8899b0;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all .15s
+    }
+
+    .fbbtn:hover {
+      border-color: #00e5a0;
+      color: #00e5a0
+    }
+
+    .fbbtn.w:hover {
+      border-color: #ff3a5c;
+      color: #ff3a5c
+    }
+
+    .fbok {
+      font-size: 11px;
+      color: #00e5a0;
+      font-family: 'JetBrains Mono', monospace;
+      display: none
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #030507
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #243040;
+      border-radius: 3px
+    }
+
+    @media(max-width:720px) {
+      .dgrid {
+        grid-template-columns: 1fr
+      }
+
+      .hdr {
+        padding: 0 14px
+      }
+
+      .wrap {
+        padding: 0 14px
+      }
+
+      nav .nl span {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-orbs">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+  </div>
+  <div class="bg-grid"></div>
+  <header>
+    <div class="hdr">
+      <a class="logo" href="/">
+        <div class="lm">🛡</div>Spam<em>Shield</em>
+      </a>
+      <nav>
+        <a class="nl" href="/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          </svg><span>Home</span></a>
+        <a class="nl active" href="/detect"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg><span>Detect</span></a>
+        <a class="nl" href="/analytics"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg><span>Analytics</span></a>
+        <a class="nl" href="/about"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg><span>About</span></a>
+      </nav>
+      <div class="sp">
+        <div class="dot"></div>MODEL ACTIVE
+      </div>
+    </div>
+  </header>
+  <div class="wrap">
+    <div class="phead">
+      <div class="stitle">Email Detector</div>
+      <div class="ssub">Paste any email body — the BiLSTM model classifies it in milliseconds.</div>
+    </div>
+    <div class="dgrid">
+      <div class="card">
+        <div class="ch">Email Body</div>
+        <div class="cb">
+          <div class="srow">
+            <button class="sbtn sp-ex" onclick="loadS('spam')">⚠ Spam sample</button>
+            <button class="sbtn hm-ex" onclick="loadS('ham')">✓ Legit sample</button>
+            <button class="sbtn" onclick="clearAll()">✕ Clear</button>
+          </div>
+          <label class="flabel">Email body <span style="color:#ff3a5c">*</span></label>
+          <div class="twrap">
+            <textarea class="tarea" id="ebody" rows="13" placeholder="Paste the full email text here..."
+              oninput="updateC()"></textarea>
+            <span class="ccount" id="ccount">0 chars</span>
+          </div>
+          <button class="abtn" id="abtn" onclick="analyze()">
+            <svg id="aico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.2">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <span id="atxt">Analyze Email</span>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="rempty" id="rempty">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#4a5a70" stroke-width="1">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          <p>Result will appear here</p>
+        </div>
+        <div class="rload" id="rload">
+          <div class="sring"></div>
+          <p>Analyzing email…</p>
+        </div>
+        <div class="rcard" id="rcard">
+          <div class="rbanner" id="rbanner">
+            <div class="rbadge" id="rbadge">🚨</div>
+            <div>
+              <div class="rlabel" id="rlabel">SPAM</div>
+              <div class="rconf" id="rconf">Confidence: 0%</div>
+            </div>
+          </div>
+          <div class="gsect">
+            <div class="glbls"><span>HAM (LEGIT)</span><span>SPAM</span></div>
+            <div class="gtrack">
+              <div class="gfill" id="gfill" style="width:0%"></div>
+            </div>
+            <div class="gvals"><span id="gham">0%</span><span id="gspam">0%</span></div>
+          </div>
+          <div class="tiles">
+            <div class="tile">
+              <div class="tv sp" id="t1">—</div>
+              <div class="tl">SPAM PROB</div>
+            </div>
+            <div class="tile">
+              <div class="tv hm" id="t2">—</div>
+              <div class="tl">HAM PROB</div>
+            </div>
+            <div class="tile">
+              <div class="tv ac" id="t3">—</div>
+              <div class="tl">CONFIDENCE</div>
+            </div>
+          </div>
+          <div class="rsect">
+            <div class="rlbl2">THREAT LEVEL</div>
+            <div class="rsteps" id="rsteps">
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+              <div class="rstep"></div>
+            </div>
+          </div>
+          <div class="fbsect">
+            <span class="fblbl">Correct?</span>
+            <button class="fbbtn" onclick="doFb(true)">👍 Yes</button>
+            <button class="fbbtn w" onclick="doFb(false)">👎 Wrong</button>
+            <span class="fbok" id="fbok">✓ Feedback saved</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const SAMPLES = {
+      spam: 'Dear Lucky Winner!\n\nYou have been SELECTED as our grand prize winner of ONE MILLION POUNDS!! CLICK HERE to claim: http://claim-prize-now.xyz\n\nACT FAST — expires in 24 HOURS. Reply with your bank details now. Congratulations!!',
+      ham: 'Hi team,\n\nFollowing up on this morning\'s discussion. I have updated the project timeline with the revised milestones. Please review when you get a chance.\n\nReminder: check-in Thursday 2pm, same Zoom link.\n\nThanks, Sarah'
+    };
+    function loadS(t) { document.getElementById('ebody').value = SAMPLES[t]; updateC(); }
+    function updateC() { document.getElementById('ccount').textContent = document.getElementById('ebody').value.length + ' chars'; }
+    function clearAll() {
+      document.getElementById('ebody').value = ''; updateC();
+      document.getElementById('rcard').classList.remove('show');
+      document.getElementById('rempty').style.display = 'flex';
+      document.getElementById('rload').classList.remove('show');
+      document.getElementById('fbok').style.display = 'none';
+    }
+    let lastId = null;
+    function analyze() {
+      const body = document.getElementById('ebody').value.trim(); if (!body) return;
+      const btn = document.getElementById('abtn');
+      document.getElementById('aico').className = 'spin';
+      document.getElementById('atxt').textContent = 'Analyzing…';
+      btn.disabled = true;
+      document.getElementById('rempty').style.display = 'none';
+      document.getElementById('rcard').classList.remove('show');
+      document.getElementById('rload').classList.add('show');
+      fetch('/predict', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ body }) })
+        .then(r => r.json()).then(d => { if (d.error) { alert(d.error); return; } showR(d); lastId = d.id; })
+        .catch(() => alert('Server error — make sure app.py is running.'))
+        .finally(() => {
+          document.getElementById('rload').classList.remove('show');
+          document.getElementById('aico').className = '';
+          document.getElementById('atxt').textContent = 'Analyze Email';
+          btn.disabled = false;
+        });
+    }
+    function showR(r) {
+      const isSpam = r.label === 'spam';
+      document.getElementById('rempty').style.display = 'none';
+      document.getElementById('fbok').style.display = 'none';
+      document.getElementById('rbanner').className = 'rbanner ' + r.label;
+      document.getElementById('rbadge').className = 'rbadge ' + r.label;
+      document.getElementById('rbadge').textContent = isSpam ? '🚨' : '✅';
+      const rl = document.getElementById('rlabel');
+      rl.className = 'rlabel ' + r.label; rl.textContent = isSpam ? 'SPAM DETECTED' : 'LOOKS LEGIT';
+      document.getElementById('rconf').textContent = 'Confidence: ' + (r.confidence * 100).toFixed(1) + '%';
+      const gf = document.getElementById('gfill'); gf.className = 'gfill ' + r.label;
+      setTimeout(() => { gf.style.width = (r.spam_score * 100) + '%'; }, 60);
+      document.getElementById('gham').textContent = (r.ham_score * 100).toFixed(1) + '%';
+      document.getElementById('gspam').textContent = (r.spam_score * 100).toFixed(1) + '%';
+      document.getElementById('t1').textContent = (r.spam_score * 100).toFixed(1) + '%';
+      document.getElementById('t2').textContent = (r.ham_score * 100).toFixed(1) + '%';
+      document.getElementById('t3').textContent = (r.confidence * 100).toFixed(1) + '%';
+      const steps = document.querySelectorAll('.rstep');
+      const filled = Math.round(r.spam_score * 10);
+      steps.forEach((s, i) => {
+        if (i < filled) { s.style.background = i < 3 ? '#f5c842' : i < 6 ? '#ff8c42' : '#ff3a5c'; s.style.boxShadow = i >= 7 ? '0 0 6px #ff3a5c' : 'none'; }
+        else { s.style.background = '#1a2535'; s.style.boxShadow = 'none'; }
+      });
+      document.getElementById('rcard').classList.add('show');
+    }
+    function doFb(ok) {
+      if (!lastId) return;
+      const cur = document.getElementById('rlabel').textContent.includes('SPAM') ? 'spam' : 'ham';
+      const lbl = ok ? cur : (cur === 'spam' ? 'ham' : 'spam');
+      fetch('/feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prediction_id: lastId, correct_label: lbl }) });
+      document.getElementById('fbok').style.display = 'inline';
+    }
+  </script>
+</body>
+
+</html>
