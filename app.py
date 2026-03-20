@@ -14,6 +14,9 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 from flask import Flask, request, jsonify, render_template, g
 
+import os
+
+
 # ══════════════════════════════════════════════════════════════
 #  1. PREPROCESSING
 # ══════════════════════════════════════════════════════════════
@@ -337,3 +340,7 @@ if __name__ == "__main__":
     load_predictor()
     print(f"\n🛡  SpamShield → http://localhost:{args.port}\n")
     app.run(debug=False, port=args.port)
+
+
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port)
