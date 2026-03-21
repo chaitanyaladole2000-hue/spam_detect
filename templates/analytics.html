@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,700;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Space Grotesk',sans-serif;background:#030507;color:#e2eaf5;min-height:100vh;overflow-x:hidden}
+body{font-family:'Space Grotesk',sans-serif;background:#030507;color:#e2eaf5;min-height:100vh;overflow-x:hidden;font-size:18px}
 .bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.055}
 .o1{width:700px;height:700px;background:#4f8eff;top:-250px;right:-150px;animation:d1 22s ease-in-out infinite}
@@ -17,124 +17,127 @@ body{font-family:'Space Grotesk',sans-serif;background:#030507;color:#e2eaf5;min
 @keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,50px)}}
 .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:52px 52px}
-.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 24px}
+  linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:52px 52px}
+.wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 32px}
 
 /* ── Header ── */
 header{position:sticky;top:0;z-index:200;border-bottom:1px solid #1a2535;background:rgba(3,5,7,.88);backdrop-filter:blur(24px)}
-.hdr{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1280px;margin:0 auto;padding:0 24px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#e2eaf5;font-family:'Fraunces',serif;font-weight:700;font-size:18px}
-.lm{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#4f8eff,#9d6fff);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 22px rgba(79,142,255,.38)}
+.hdr{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:1400px;margin:0 auto;padding:0 32px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#e2eaf5;font-family:'Fraunces',serif;font-weight:700;font-size:24px}
+.lm{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#4f8eff,#9d6fff);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 24px rgba(79,142,255,.38)}
 .logo em{font-style:italic;color:#7aadff}
-nav{display:flex;gap:2px}
-.nl{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;color:#8899b0;text-decoration:none;transition:all .18s;border:1px solid transparent}
+nav{display:flex;gap:4px}
+.nl{display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:9px;font-size:17px;font-weight:500;color:#8899b0;text-decoration:none;transition:all .18s;border:1px solid transparent}
 .nl:hover{color:#e2eaf5;background:#0f1520;border-color:#1a2535}
 .nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.28)}
-.pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,229,160,.07);border:1px solid rgba(0,229,160,.18);font-family:'JetBrains Mono',monospace;font-size:10px;color:#00e5a0;letter-spacing:.06em}
-.dot{width:6px;height:6px;border-radius:50%;background:#00e5a0;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}60%{box-shadow:0 0 0 6px rgba(0,229,160,0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}60%{box-shadow:0 0 0 7px rgba(0,229,160,0)}}
 
 /* ── Page head ── */
-.phead{padding:32px 0 22px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.stitle{font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:-.5px}
-.ssub{font-size:13px;color:#8899b0;margin-top:4px;line-height:1.6}
-.rbtn{width:30px;height:30px;border-radius:8px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.phead{padding:40px 0 28px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.stitle{font-family:'Fraunces',serif;font-weight:700;font-size:32px;letter-spacing:-.6px}
+.ssub{font-size:16px;color:#8899b0;margin-top:7px;line-height:1.6}
+.rbtn{width:40px;height:40px;border-radius:10px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .rbtn:hover{border-color:#4f8eff;color:#7aadff}
+.rbtn svg{width:16px;height:16px}
 
 /* ── Stat cards ── */
-.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.sc{background:#0f1520;border:1px solid #1a2535;border-radius:18px;padding:20px;position:relative;overflow:hidden;transition:all .2s}
-.sc:hover{border-color:#243040;transform:translateY(-2px)}
-.sc::after{content:attr(data-i);position:absolute;right:12px;bottom:8px;font-size:32px;opacity:.07}
-.snum{font-family:'Fraunces',serif;font-weight:700;font-size:32px;line-height:1;letter-spacing:-1px}
-.slbl{font-size:11px;color:#8899b0;margin-top:5px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px}
+.sc{background:#0f1520;border:1px solid #1a2535;border-radius:22px;padding:28px 26px;position:relative;overflow:hidden;transition:all .2s}
+.sc:hover{border-color:#243040;transform:translateY(-3px)}
+.sc::after{content:attr(data-i);position:absolute;right:18px;bottom:14px;font-size:44px;opacity:.08}
+.snum{font-family:'Fraunces',serif;font-weight:700;font-size:44px;line-height:1;letter-spacing:-1.5px}
+.slbl{font-size:14px;color:#8899b0;margin-top:9px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
 
-/* ── Main split: left=analytics, right=history ── */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:60px}
+/* ── Layout ── */
+.split{display:flex;flex-direction:column;padding-bottom:60px;gap:22px}
 
-/* ── Left col: charts + model ── */
-.cc{background:#0f1520;border:1px solid #1a2535;border-radius:18px;padding:20px;margin-bottom:14px}
-.cc:last-child{margin-bottom:0}
-.ctitle{font-family:'Fraunces',serif;font-weight:700;font-size:14px;margin-bottom:18px;letter-spacing:-.2px}
+/* ── Chart / info cards ── */
+.cc{background:#0f1520;border:1px solid #1a2535;border-radius:22px;padding:30px}
+.ctitle{font-family:'Fraunces',serif;font-weight:700;font-size:20px;margin-bottom:24px;letter-spacing:-.3px}
 
-/* Donut */
-.dwrap{display:flex;align-items:center;gap:22px}
-.dleg{display:flex;flex-direction:column;gap:10px}
-.dli{display:flex;align-items:center;gap:8px}
-.dld{width:9px;height:9px;border-radius:2px;flex-shrink:0}
-.dln{font-size:11px;color:#8899b0;font-family:'JetBrains Mono',monospace}
-.dlv{font-family:'Fraunces',serif;font-weight:700;font-size:15px}
+/* ── Donut chart ── */
+.dwrap{display:flex;align-items:center;gap:40px}
+.dleg{display:flex;flex-direction:column;gap:18px}
+.dli{display:flex;align-items:center;gap:14px}
+.dld{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+.dln{font-size:15px;color:#8899b0;font-family:'JetBrains Mono',monospace}
+.dlv{font-family:'Fraunces',serif;font-weight:700;font-size:26px}
 
-/* Confidence bars */
-.blist{display:flex;flex-direction:column;gap:10px}
-.brow{display:flex;align-items:center;gap:9px}
-.blbl{font-size:11px;color:#8899b0;font-family:'JetBrains Mono',monospace;width:70px;flex-shrink:0}
-.btrack{flex:1;height:7px;background:#070b0f;border-radius:4px;overflow:hidden;border:1px solid #1a2535}
-.bfill{height:100%;border-radius:4px}
-.bpct{font-size:11px;font-family:'JetBrains Mono',monospace;color:#8899b0;width:32px;text-align:right;flex-shrink:0}
+/* ── Confidence bars ── */
+.blist{display:flex;flex-direction:column;gap:16px}
+.brow{display:flex;align-items:center;gap:14px}
+.blbl{font-size:14px;color:#8899b0;font-family:'JetBrains Mono',monospace;width:90px;flex-shrink:0}
+.btrack{flex:1;height:12px;background:#070b0f;border-radius:6px;overflow:hidden;border:1px solid #1a2535}
+.bfill{height:100%;border-radius:6px}
+.bpct{font-size:14px;font-family:'JetBrains Mono',monospace;color:#8899b0;width:42px;text-align:right;flex-shrink:0}
 
-/* Model specs */
-.spgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.spi{background:#070b0f;border:1px solid #1a2535;border-radius:10px;padding:12px}
-.spv{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#7aadff}
-.spl{font-size:9px;color:#4a5a70;margin-top:2px;letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
-.accsect{margin-top:16px;padding-top:16px;border-top:1px solid #1a2535}
-.acclbl{display:flex;justify-content:space-between;font-size:11px;font-family:'JetBrains Mono',monospace;color:#8899b0;margin-bottom:7px}
-.acctrack{height:10px;background:#070b0f;border-radius:5px;overflow:hidden;border:1px solid #1a2535}
-.accfill{height:100%;border-radius:5px;background:linear-gradient(90deg,#00e5a0,#4f8eff);box-shadow:0 0 12px rgba(0,229,160,.3);transition:width 1s cubic-bezier(.4,0,.2,1)}
+/* ── Model specs ── */
+.spgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.spi{background:#070b0f;border:1px solid #1a2535;border-radius:14px;padding:20px}
+.spv{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:#7aadff}
+.spl{font-size:13px;color:#4a5a70;margin-top:7px;letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.accsect{margin-top:24px;padding-top:24px;border-top:1px solid #1a2535}
+.acclbl{display:flex;justify-content:space-between;font-size:15px;font-family:'JetBrains Mono',monospace;color:#8899b0;margin-bottom:12px}
+.acctrack{height:16px;background:#070b0f;border-radius:8px;overflow:hidden;border:1px solid #1a2535}
+.accfill{height:100%;border-radius:8px;background:linear-gradient(90deg,#00e5a0,#4f8eff);box-shadow:0 0 16px rgba(0,229,160,.3);transition:width 1s cubic-bezier(.4,0,.2,1)}
 
-/* ── Right col: history ── */
+/* ── History column ── */
 .hcol{display:flex;flex-direction:column;gap:0}
-.hhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.htitle{font-family:'Fraunces',serif;font-weight:700;font-size:15px;letter-spacing:-.2px}
-.hcontrols{display:flex;align-items:center;gap:6px}
-.hfrow{display:flex;gap:4px}
-.hfbtn{font-size:10px;padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid #1a2535;background:transparent;color:#8899b0;font-family:'JetBrains Mono',monospace;transition:all .14s}
+.hhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.htitle{font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:-.4px}
+.hcontrols{display:flex;align-items:center;gap:10px}
+.hfrow{display:flex;gap:7px}
+.hfbtn{font-size:14px;padding:8px 18px;border-radius:20px;cursor:pointer;border:1px solid #1a2535;background:transparent;color:#8899b0;font-family:'JetBrains Mono',monospace;transition:all .14s}
 .hfbtn.active{background:#131c28;color:#e2eaf5;border-color:#243040}
 .hfbtn:hover:not(.active){color:#e2eaf5;border-color:#243040}
 
-/* Summary chips */
-.chips{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
-.chip{padding:5px 11px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;display:flex;align-items:center;gap:5px}
+/* ── Summary chips ── */
+.chips{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.chip{padding:10px 18px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:14px;display:flex;align-items:center;gap:8px}
 .chip.tot{background:#0f1520;border:1px solid #1a2535;color:#8899b0}
 .chip.spc{background:#1a0810;border:1px solid rgba(255,58,92,.2);color:#ff6b85}
 .chip.hmc{background:#001a12;border:1px solid rgba(0,229,160,.15);color:#00e5a0}
-.chipv{font-size:13px;font-weight:600;font-family:'Space Grotesk',sans-serif}
+.chipv{font-size:20px;font-weight:600;font-family:'Space Grotesk',sans-serif}
 
-/* Scrollable list */
-.hscroll{overflow-y:auto;display:flex;flex-direction:column;gap:7px;max-height:calc(100vh - 300px)}
-.hscroll::-webkit-scrollbar{width:4px}
+/* ── Scrollable list ── */
+.hscroll{overflow-y:auto;display:flex;flex-direction:column;gap:12px;max-height:600px}
+.hscroll::-webkit-scrollbar{width:5px}
 .hscroll::-webkit-scrollbar-track{background:transparent}
-.hscroll::-webkit-scrollbar-thumb{background:#1a2535;border-radius:2px}
+.hscroll::-webkit-scrollbar-thumb{background:#1a2535;border-radius:3px}
 
-.hi{display:flex;align-items:center;gap:11px;background:#0f1520;border:1px solid #1a2535;border-radius:12px;padding:12px 14px;transition:all .15s;position:relative;overflow:hidden}
-.hi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+/* ── History items ── */
+.hi{display:flex;align-items:center;gap:16px;background:#0f1520;border:1px solid #1a2535;border-radius:16px;padding:18px 20px;transition:all .15s;position:relative;overflow:hidden}
+.hi::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
 .hi.spam::before{background:#ff3a5c}
 .hi.ham::before{background:#00e5a0}
 .hi:hover{border-color:#243040;background:#131c28}
-.hbadge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:7px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;flex-shrink:0;text-transform:uppercase}
+.hbadge{font-size:12px;font-weight:700;padding:6px 13px;border-radius:9px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;flex-shrink:0;text-transform:uppercase}
 .hbadge.spam{background:rgba(255,58,92,.12);color:#ff3a5c;border:1px solid rgba(255,58,92,.2)}
 .hbadge.ham{background:rgba(0,229,160,.1);color:#00e5a0;border:1px solid rgba(0,229,160,.15)}
 .hc{flex:1;min-width:0}
-.hprev{font-size:12px;color:#e2eaf5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hdate{font-size:10px;color:#4a5a70;font-family:'JetBrains Mono',monospace;margin-top:2px}
+.hprev{font-size:15px;color:#e2eaf5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdate{font-size:13px;color:#4a5a70;font-family:'JetBrains Mono',monospace;margin-top:5px}
 .hright{text-align:right;flex-shrink:0}
-.hsc{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500}
+.hsc{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500}
 .hsc.spam{color:#ff3a5c}.hsc.ham{color:#00e5a0}
-.hbar{width:50px;height:3px;background:#1a2535;border-radius:2px;margin-top:4px;overflow:hidden}
-.hbf{height:100%;border-radius:2px}
+.hbar{width:70px;height:6px;background:#1a2535;border-radius:3px;margin-top:7px;overflow:hidden}
+.hbf{height:100%;border-radius:3px}
 .hbf.spam{background:#ff3a5c}.hbf.ham{background:#00e5a0}
-.dbtn{background:none;border:none;color:#4a5a70;cursor:pointer;padding:4px;border-radius:5px;opacity:0;transition:all .15s;flex-shrink:0;font-size:12px}
+.dbtn{background:none;border:none;color:#4a5a70;cursor:pointer;padding:7px;border-radius:7px;opacity:0;transition:all .15s;flex-shrink:0;font-size:17px}
 .hi:hover .dbtn{opacity:1}
 .dbtn:hover{color:#ff3a5c;background:#1a0810}
-.estate{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 16px;gap:10px;border:2px dashed #1a2535;border-radius:14px}
-.estate p{font-size:12px;color:#4a5a70;font-family:'JetBrains Mono',monospace}
-.estate a{color:#7aadff;text-decoration:none;font-size:12px;font-family:'JetBrains Mono',monospace}
+
+/* ── Empty state ── */
+.estate{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px;gap:14px;border:2px dashed #1a2535;border-radius:18px}
+.estate svg{width:56px;height:56px}
+.estate p{font-size:15px;color:#4a5a70;font-family:'JetBrains Mono',monospace}
+.estate a{color:#7aadff;text-decoration:none;font-size:15px;font-family:'JetBrains Mono',monospace}
 .estate a:hover{text-decoration:underline}
 
-/* Pagination */
-.pgn{display:flex;justify-content:center;gap:5px;margin-top:12px}
-.pgbtn{width:28px;height:28px;border-radius:7px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;font-size:11px;font-family:'JetBrains Mono',monospace;transition:all .15s}
+/* ── Pagination ── */
+.pgn{display:flex;justify-content:center;gap:7px;margin-top:18px}
+.pgbtn{width:36px;height:36px;border-radius:9px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;font-size:14px;font-family:'JetBrains Mono',monospace;transition:all .15s}
 .pgbtn.active{background:#4f8eff;color:#fff;border-color:#4f8eff}
 .pgbtn:hover:not(.active){border-color:#4f8eff;color:#7aadff}
 
@@ -142,9 +145,11 @@ nav{display:flex;gap:2px}
 .fu{animation:fu .45s ease both}
 .fu2{animation:fu .45s .1s ease both}
 .fu3{animation:fu .45s .2s ease both}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#030507}::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}
-@media(max-width:900px){.split{grid-template-columns:1fr}.sgrid{grid-template-columns:1fr 1fr}.spgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.sgrid{grid-template-columns:1fr 1fr}.hdr{padding:0 14px}.wrap{padding:0 14px}nav .nl span{display:none}}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#030507}
+::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}
+@media(max-width:900px){.sgrid{grid-template-columns:1fr 1fr}.spgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.sgrid{grid-template-columns:1fr 1fr}.hdr{padding:0 16px}.wrap{padding:0 16px}nav .nl{padding:8px 12px;font-size:14px}}
 </style>
 </head>
 <body>
@@ -155,12 +160,11 @@ nav{display:flex;gap:2px}
   <div class="hdr">
     <a class="logo" href="/"><div class="lm">🛡</div>Spam<em>Shield</em></a>
     <nav>
-      <a class="nl" href="/"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Home</span></a>
-      <a class="nl" href="/detect"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>Detect</span></a>
-      <a class="nl active" href="/analytics"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Analytics</span></a>
-      <a class="nl" href="/about"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>About</span></a>
+      <a class="nl" href="/">Home</a>
+      <a class="nl" href="/detect">Detect</a>
+      <a class="nl active" href="/analytics">Analytics</a>
+      <a class="nl" href="/about">About</a>
     </nav>
-    <div class="pill"><div class="dot"></div>MODEL ACTIVE</div>
   </div>
 </header>
 
@@ -186,7 +190,32 @@ nav{display:flex;gap:2px}
   <!-- ── Main split ── -->
   <div class="split fu3">
 
-    <!-- Left: Analytics -->
+        <!-- History -->
+    <div class="hcol cc">
+      <div class="hhead">
+        <div class="htitle">Detection History</div>
+        <div class="hcontrols">
+          <div class="hfrow">
+            <button class="hfbtn active" onclick="setF('all',this)">All</button>
+            <button class="hfbtn" onclick="setF('spam',this)">Spam</button>
+            <button class="hfbtn" onclick="setF('ham',this)">Ham</button>
+          </div>
+          <button class="rbtn" onclick="loadH()" title="Refresh">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="chips">
+        <div class="chip tot"><span class="chipv" id="ct">—</span>total</div>
+        <div class="chip spc"><span class="chipv" id="cs">—</span>spam</div>
+        <div class="chip hmc"><span class="chipv" id="ch">—</span>ham</div>
+      </div>
+
+      <div class="hscroll" id="hlist"></div>
+      <div class="pgn" id="pgn"></div>
+    </div>
+
     <div>
       <!-- Donut + bar charts side by side -->
       <div class="cc">
@@ -211,16 +240,6 @@ nav{display:flex;gap:2px}
       </div>
 
       <div class="cc">
-        <div class="ctitle">Confidence Distribution</div>
-        <div class="blist">
-          <div class="brow"><span class="blbl">90–100%</span><div class="btrack"><div class="bfill" style="width:78%;background:#00e5a0;box-shadow:0 0 7px rgba(0,229,160,.3)"></div></div><span class="bpct" style="color:#00e5a0">78%</span></div>
-          <div class="brow"><span class="blbl">70–90%</span><div class="btrack"><div class="bfill" style="width:13%;background:#4f8eff"></div></div><span class="bpct">13%</span></div>
-          <div class="brow"><span class="blbl">50–70%</span><div class="btrack"><div class="bfill" style="width:6%;background:#f5c842"></div></div><span class="bpct">6%</span></div>
-          <div class="brow"><span class="blbl">&lt; 50%</span><div class="btrack"><div class="bfill" style="width:3%;background:#ff3a5c"></div></div><span class="bpct" style="color:#ff3a5c">3%</span></div>
-        </div>
-      </div>
-
-      <div class="cc">
         <div class="ctitle">Model Info — BiLSTM</div>
         <div class="spgrid" id="spgrid">
           <div class="spi"><div class="spv">BiLSTM</div><div class="spl">Architecture</div></div>
@@ -237,31 +256,7 @@ nav{display:flex;gap:2px}
       </div>
     </div>
 
-    <!-- Right: History -->
-    <div class="hcol">
-      <div class="hhead">
-        <div class="htitle">Detection History</div>
-        <div class="hcontrols">
-          <div class="hfrow">
-            <button class="hfbtn active" onclick="setF('all',this)">All</button>
-            <button class="hfbtn" onclick="setF('spam',this)">Spam</button>
-            <button class="hfbtn" onclick="setF('ham',this)">Ham</button>
-          </div>
-          <button class="rbtn" onclick="loadH()" title="Refresh">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-          </button>
-        </div>
-      </div>
 
-      <div class="chips">
-        <div class="chip tot"><span class="chipv" id="ct">—</span>total</div>
-        <div class="chip spc"><span class="chipv" id="cs">—</span>spam</div>
-        <div class="chip hmc"><span class="chipv" id="ch">—</span>ham</div>
-      </div>
-
-      <div class="hscroll" id="hlist"></div>
-      <div class="pgn" id="pgn"></div>
-    </div>
 
   </div>
 </div>
