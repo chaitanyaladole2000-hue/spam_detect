@@ -31,15 +31,11 @@ nav{display:flex;gap:4px}
 .nl{display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:9px;font-size:17px;font-weight:500;color:#8899b0;text-decoration:none;transition:all .18s;border:1px solid transparent}
 .nl:hover{color:#e2eaf5;background:#0f1520;border-color:#1a2535}
 .nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.28)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}60%{box-shadow:0 0 0 7px rgba(0,229,160,0)}}
 
 /* ── Page head ── */
 .phead{padding:40px 0 28px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px}
 .stitle{font-family:'Fraunces',serif;font-weight:700;font-size:32px;letter-spacing:-.6px}
 .ssub{font-size:16px;color:#8899b0;margin-top:7px;line-height:1.6}
-.rbtn{width:40px;height:40px;border-radius:10px;border:1px solid #1a2535;background:transparent;color:#8899b0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.rbtn:hover{border-color:#4f8eff;color:#7aadff}
-.rbtn svg{width:16px;height:16px}
 
 /* ── Stat cards ── */
 .sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:26px}
@@ -64,23 +60,11 @@ nav{display:flex;gap:4px}
 .dln{font-size:15px;color:#8899b0;font-family:'JetBrains Mono',monospace}
 .dlv{font-family:'Fraunces',serif;font-weight:700;font-size:26px}
 
-/* ── Confidence bars ── */
-.blist{display:flex;flex-direction:column;gap:16px}
-.brow{display:flex;align-items:center;gap:14px}
-.blbl{font-size:14px;color:#8899b0;font-family:'JetBrains Mono',monospace;width:90px;flex-shrink:0}
-.btrack{flex:1;height:12px;background:#070b0f;border-radius:6px;overflow:hidden;border:1px solid #1a2535}
-.bfill{height:100%;border-radius:6px}
-.bpct{font-size:14px;font-family:'JetBrains Mono',monospace;color:#8899b0;width:42px;text-align:right;flex-shrink:0}
-
 /* ── Model specs ── */
 .spgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .spi{background:#070b0f;border:1px solid #1a2535;border-radius:14px;padding:20px}
 .spv{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:#7aadff}
 .spl{font-size:13px;color:#4a5a70;margin-top:7px;letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
-.accsect{margin-top:24px;padding-top:24px;border-top:1px solid #1a2535}
-.acclbl{display:flex;justify-content:space-between;font-size:15px;font-family:'JetBrains Mono',monospace;color:#8899b0;margin-bottom:12px}
-.acctrack{height:16px;background:#070b0f;border-radius:8px;overflow:hidden;border:1px solid #1a2535}
-.accfill{height:100%;border-radius:8px;background:linear-gradient(90deg,#00e5a0,#4f8eff);box-shadow:0 0 16px rgba(0,229,160,.3);transition:width 1s cubic-bezier(.4,0,.2,1)}
 
 /* ── History column ── */
 .hcol{display:flex;flex-direction:column;gap:0}
@@ -100,8 +84,8 @@ nav{display:flex;gap:4px}
 .chip.hmc{background:#001a12;border:1px solid rgba(0,229,160,.15);color:#00e5a0}
 .chipv{font-size:20px;font-weight:600;font-family:'Space Grotesk',sans-serif}
 
-/* ── Scrollable list ── */
-.hscroll{overflow-y:auto;display:flex;flex-direction:column;gap:12px;max-height:600px}
+/* ── Scrollable list — grows with content, scrolls after 600px ── */
+.hscroll{display:flex;flex-direction:column;gap:12px;max-height:600px;overflow-y:auto}
 .hscroll::-webkit-scrollbar{width:5px}
 .hscroll::-webkit-scrollbar-track{background:transparent}
 .hscroll::-webkit-scrollbar-thumb{background:#1a2535;border-radius:3px}
@@ -130,7 +114,6 @@ nav{display:flex;gap:4px}
 
 /* ── Empty state ── */
 .estate{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px;gap:14px;border:2px dashed #1a2535;border-radius:18px}
-.estate svg{width:56px;height:56px}
 .estate p{font-size:15px;color:#4a5a70;font-family:'JetBrains Mono',monospace}
 .estate a{color:#7aadff;text-decoration:none;font-size:15px;font-family:'JetBrains Mono',monospace}
 .estate a:hover{text-decoration:underline}
@@ -174,23 +157,19 @@ nav{display:flex;gap:4px}
       <div class="stitle">Analytics & History</div>
       <div class="ssub">Model performance, detection statistics, and all past predictions.</div>
     </div>
-    <button class="rbtn" onclick="loadAll()" title="Refresh">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-    </button>
   </div>
 
   <!-- ── Stat cards ── -->
   <div class="sgrid fu2">
-    <div class="sc" data-i="📧"><div class="snum" style="color:#f5c842" id="s1">—</div><div class="slbl">EMAILS ANALYZED</div></div>
-    <div class="sc" data-i="🚨"><div class="snum" style="color:#ff6b85" id="s2">—</div><div class="slbl">SPAM DETECTED</div></div>
-    <div class="sc" data-i="✅"><div class="snum" style="color:#00e5a0" id="s3">—</div><div class="slbl">HAM (LEGIT)</div></div>
-    <div class="sc" data-i="🎯"><div class="snum" style="color:#7aadff" id="s4">—</div><div class="slbl">MODEL VAL F1</div></div>
+    <div class="sc" ><div class="snum" style="color:#f5c842" id="s1">—</div><div class="slbl">EMAILS ANALYZED</div></div>
+    <div class="sc" ><div class="snum" style="color:#ff6b85" id="s2">—</div><div class="slbl">SPAM DETECTED</div></div>
+    <div class="sc" ><div class="snum" style="color:#00e5a0" id="s3">—</div><div class="slbl">HAM (LEGIT)</div></div>
+    <div class="sc" ><div class="snum" style="color:#7aadff" id="s4">—</div><div class="slbl">MODEL VAL F1</div></div>
   </div>
 
-  <!-- ── Main split ── -->
   <div class="split fu3">
 
-        <!-- History -->
+    <!-- History -->
     <div class="hcol cc">
       <div class="hhead">
         <div class="htitle">Detection History</div>
@@ -200,63 +179,38 @@ nav{display:flex;gap:4px}
             <button class="hfbtn" onclick="setF('spam',this)">Spam</button>
             <button class="hfbtn" onclick="setF('ham',this)">Ham</button>
           </div>
-          <button class="rbtn" onclick="loadH()" title="Refresh">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-          </button>
         </div>
       </div>
-
       <div class="chips">
         <div class="chip tot"><span class="chipv" id="ct">—</span>total</div>
         <div class="chip spc"><span class="chipv" id="cs">—</span>spam</div>
         <div class="chip hmc"><span class="chipv" id="ch">—</span>ham</div>
       </div>
-
       <div class="hscroll" id="hlist"></div>
       <div class="pgn" id="pgn"></div>
     </div>
 
-    <div>
-      <!-- Donut + bar charts side by side -->
-      <div class="cc">
-        <div class="ctitle">Spam vs Ham Ratio</div>
-        <div class="dwrap">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#070b0f" stroke-width="16"/>
-            <circle id="dh" cx="55" cy="55" r="42" fill="none" stroke="#00e5a0" stroke-width="16"
-              stroke-dasharray="0 264" stroke-dashoffset="66" stroke-linecap="round"
-              style="transition:stroke-dasharray 1s ease;filter:drop-shadow(0 0 5px rgba(0,229,160,.4))"/>
-            <circle id="dsp" cx="55" cy="55" r="42" fill="none" stroke="#ff3a5c" stroke-width="16"
-              stroke-dasharray="0 264" stroke-dashoffset="66" stroke-linecap="round"
-              style="transition:stroke-dasharray 1s ease;filter:drop-shadow(0 0 5px rgba(255,58,92,.4))"/>
-            <text id="dpct" x="55" y="51" text-anchor="middle" font-family="Fraunces,serif" font-weight="700" font-size="16" fill="#e2eaf5">—</text>
-            <text x="55" y="64" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#8899b0">HAM</text>
-          </svg>
-          <div class="dleg">
-            <div class="dli"><div class="dld" style="background:#00e5a0"></div><div><div class="dlv" id="lh">—</div><div class="dln">HAM / LEGIT</div></div></div>
-            <div class="dli"><div class="dld" style="background:#ff3a5c"></div><div><div class="dlv" id="ls">—</div><div class="dln">SPAM</div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cc">
-        <div class="ctitle">Model Info — BiLSTM</div>
-        <div class="spgrid" id="spgrid">
-          <div class="spi"><div class="spv">BiLSTM</div><div class="spl">Architecture</div></div>
-          <div class="spi"><div class="spv" id="sp-p">—</div><div class="spl">Parameters</div></div>
-          <div class="spi"><div class="spv" id="sp-v">—</div><div class="spl">Vocab Size</div></div>
-          <div class="spi"><div class="spv" id="sp-f">—</div><div class="spl">Val F1</div></div>
-          <div class="spi"><div class="spv">~15 MB</div><div class="spl">Model Size</div></div>
-          <div class="spi"><div class="spv" id="sp-d">—</div><div class="spl">Device</div></div>
-        </div>
-        <div class="accsect">
-          <div class="acclbl"><span>ACCURACY</span><span id="accval">—</span></div>
-          <div class="acctrack"><div class="accfill" id="accfill" style="width:0%"></div></div>
+    <!-- Donut chart -->
+    <div class="cc">
+      <div class="ctitle">Spam vs Ham Ratio</div>
+      <div class="dwrap">
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <circle cx="55" cy="55" r="42" fill="none" stroke="#070b0f" stroke-width="16"/>
+          <circle id="dh" cx="55" cy="55" r="42" fill="none" stroke="#00e5a0" stroke-width="16"
+            stroke-dasharray="0 264" stroke-dashoffset="66" stroke-linecap="round"
+            style="transition:stroke-dasharray 1s ease;filter:drop-shadow(0 0 5px rgba(0,229,160,.4))"/>
+          <circle id="dsp" cx="55" cy="55" r="42" fill="none" stroke="#ff3a5c" stroke-width="16"
+            stroke-dasharray="0 264" stroke-dashoffset="66" stroke-linecap="round"
+            style="transition:stroke-dasharray 1s ease;filter:drop-shadow(0 0 5px rgba(255,58,92,.4))"/>
+          <text id="dpct" x="55" y="51" text-anchor="middle" font-family="Fraunces,serif" font-weight="700" font-size="16" fill="#e2eaf5">—</text>
+          <text x="55" y="64" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#8899b0">HAM</text>
+        </svg>
+        <div class="dleg">
+          <div class="dli"><div class="dld" style="background:#00e5a0"></div><div><div class="dlv" id="lh">—</div><div class="dln">HAM / LEGIT</div></div></div>
+          <div class="dli"><div class="dld" style="background:#ff3a5c"></div><div><div class="dlv" id="ls">—</div><div class="dln">SPAM</div></div></div>
         </div>
       </div>
     </div>
-
-
 
   </div>
 </div>
@@ -282,11 +236,12 @@ function loadStats(){
     document.getElementById('cs').textContent = d.spam;
     document.getElementById('ch').textContent = d.ham;
 
-    const mi = d.model||{};
-    document.getElementById('s4').textContent = mi.val_f1?(mi.val_f1*100).toFixed(1)+'%':'—';
+    const mi = d.model || {};
+    document.getElementById('s4').textContent = mi.val_f1 ? (mi.val_f1*100).toFixed(1)+'%' : '—';
 
     /* Donut */
-    const t=d.total||1, c=264, hp=d.ham/t, ha=c*hp, sa=c*(1-hp);
+    const t = d.total || 1, c = 264, hp = d.ham/t;
+    const ha = c*hp, sa = c*(1-hp);
     document.getElementById('dh').setAttribute('stroke-dasharray', ha+' '+(c-ha));
     document.getElementById('dsp').setAttribute('stroke-dasharray', sa+' '+(c-sa));
     document.getElementById('dsp').setAttribute('stroke-dashoffset', 66-ha);
@@ -295,30 +250,23 @@ function loadStats(){
     document.getElementById('ls').textContent = d.spam;
 
     /* Model specs */
-    if(mi.parameters) document.getElementById('sp-p').textContent=(+mi.parameters).toLocaleString();
-    if(mi.vocab_size)  document.getElementById('sp-v').textContent=(+mi.vocab_size).toLocaleString();
-    if(mi.val_f1)      document.getElementById('sp-f').textContent=(mi.val_f1*100).toFixed(2)+'%';
-    if(mi.device)      document.getElementById('sp-d').textContent=mi.device;
-
-    /* Accuracy bar */
-    if(mi.val_f1){
-      const pct=(mi.val_f1*100).toFixed(1);
-      document.getElementById('accval').textContent=pct+'%';
-      setTimeout(()=>{ document.getElementById('accfill').style.width=pct+'%'; },200);
-    }
+    if(mi.parameters) document.getElementById('sp-p').textContent = (+mi.parameters).toLocaleString();
+    if(mi.vocab_size)  document.getElementById('sp-v').textContent = (+mi.vocab_size).toLocaleString();
+    if(mi.val_f1)      document.getElementById('sp-f').textContent = (mi.val_f1*100).toFixed(2)+'%';
+    if(mi.device)      document.getElementById('sp-d').textContent = mi.device;
   });
 }
 
 function loadH(){
   fetch('/history?per_page=25&page='+cp+(cf!=='all'?'&label='+cf:'')).then(r=>r.json()).then(d=>{
-    tp=Math.ceil(d.total/25);
+    tp = Math.ceil(d.total/25);
     renderList(d.predictions);
     renderPgn();
   });
 }
 
 function renderList(rows){
-  const l=document.getElementById('hlist');
+  const l = document.getElementById('hlist');
   if(!rows.length){
     l.innerHTML=`<div class="estate">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4a5a70" stroke-width="1"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
@@ -329,9 +277,9 @@ function renderList(rows){
   }
   l.innerHTML='';
   rows.forEach(p=>{
-    const pct=Math.round(p.spam_score*100);
-    const el=document.createElement('div');
-    el.className='hi '+p.label;
+    const pct = Math.round(p.spam_score*100);
+    const el = document.createElement('div');
+    el.className = 'hi '+p.label;
     el.innerHTML=`
       <span class="hbadge ${p.label}">${p.label}</span>
       <div class="hc">
@@ -348,14 +296,14 @@ function renderList(rows){
 }
 
 function renderPgn(){
-  const pg=document.getElementById('pgn');
+  const pg = document.getElementById('pgn');
   if(tp<=1){ pg.innerHTML=''; return; }
   pg.innerHTML='';
   for(let i=1;i<=tp;i++){
-    const b=document.createElement('button');
-    b.className='pgbtn'+(i===cp?' active':'');
-    b.textContent=i;
-    b.onclick=()=>{ cp=i; loadH(); };
+    const b = document.createElement('button');
+    b.className = 'pgbtn'+(i===cp?' active':'');
+    b.textContent = i;
+    b.onclick = ()=>{ cp=i; loadH(); };
     pg.appendChild(b);
   }
 }
@@ -367,7 +315,6 @@ function delI(id,btn){
   });
 }
 
-/* Init */
 loadAll();
 </script>
 </body>

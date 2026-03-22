@@ -5,14 +5,7 @@ Run:  python app.py
       python app.py --train        (force retrain)
       python app.py --data spam.tsv --epochs 20
 """
-import pickle
-import sys
-import os
-import re
-import json
-import pickle
-import sqlite3
-import argparse
+import sys, os, re, json, pickle, sqlite3, argparse, tempfile
 from pathlib import Path
 from collections import Counter
 
@@ -36,10 +29,8 @@ def clean(text):
     text = re.sub(r"[^\w\s<>]", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
-
 def tokenize(text):
     return clean(text).split()
-
 
 class Vocabulary:
     def __init__(self, max_size=30000, min_freq=2):
@@ -89,7 +80,7 @@ class SpamBiLSTM(nn.Module):
                             dropout=dropout if num_layers > 1 else 0.0,
                             bidirectional=True)
         self.drop = nn.Dropout(dropout)
-        self.fc = nn.Linear(hidden_dim * 2, 2)
+        self.fc   = nn.Linear(hidden_dim * 2, 2)
 
     def forward(self, x):
         emb = self.drop(self.embedding(x))
@@ -103,7 +94,6 @@ class SpamBiLSTM(nn.Module):
 
 ARTIFACTS = Path("artifacts")
 
-
 def train_model(data_path="spam.tsv", epochs=20, batch=32, lr=1e-3,
                 max_len=256, patience=5):
     import pandas as pd
@@ -115,7 +105,7 @@ def train_model(data_path="spam.tsv", epochs=20, batch=32, lr=1e-3,
     print(f"\n[Train] device={device}")
 
     sep = "\t" if data_path.endswith(".tsv") else ","
-    df = pd.read_csv(data_path, sep=sep, on_bad_lines="skip")
+    df  = pd.read_csv(data_path, sep=sep, on_bad_lines="skip")
     df.columns = [c.lower().strip() for c in df.columns]
     rename = {}
     for c in df.columns:
@@ -126,35 +116,29 @@ def train_model(data_path="spam.tsv", epochs=20, batch=32, lr=1e-3,
     if rename:
         df = df.rename(columns=rename)
     df = df[["label", "text"]].copy()
-    df["label"] = df["label"].map(
-        lambda x: 1 if str(x).lower().strip() == "spam" else 0)
+    df["label"] = df["label"].map(lambda x: 1 if str(x).lower().strip() == "spam" else 0)
     df = df.dropna()
-    print(
-        f"[Train] {len(df)} samples | spam={df['label'].sum()} | ham={(df['label'] == 0).sum()}")
+    print(f"[Train] {len(df)} samples | spam={df['label'].sum()} | ham={(df['label']==0).sum()}")
 
     X, y = df["text"].tolist(), df["label"].tolist()
-    Xtr, Xte, ytr, yte = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y)
-    Xv,  Xt,  yv,  yt = train_test_split(
-        Xte, yte, test_size=0.5, random_state=42, stratify=yte)
+    Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    Xv,  Xt,  yv,  yt  = train_test_split(Xte, yte, test_size=0.5, random_state=42, stratify=yte)
 
     vocab = Vocabulary()
     vocab.build(Xtr)
     print(f"[Train] vocab size={len(vocab)}")
 
-    tr_dl = DataLoader(SpamDataset(
-        Xtr, ytr, vocab, max_len), batch, shuffle=True)
+    tr_dl = DataLoader(SpamDataset(Xtr, ytr, vocab, max_len), batch, shuffle=True)
     vl_dl = DataLoader(SpamDataset(Xv,  yv,  vocab, max_len), batch)
     te_dl = DataLoader(SpamDataset(Xt,  yt,  vocab, max_len), batch)
 
-    model = SpamBiLSTM(len(vocab)).to(device)
+    model  = SpamBiLSTM(len(vocab)).to(device)
     spam_n = sum(ytr)
-    ham_n = len(ytr) - spam_n
-    crit = nn.CrossEntropyLoss(
+    ham_n  = len(ytr) - spam_n
+    crit   = nn.CrossEntropyLoss(
         weight=torch.tensor([1.0, ham_n / spam_n]).to(device))
-    opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.01)
-    sched = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        opt, patience=3, factor=0.5)
+    opt   = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=0.01)
+    sched = torch.optim.lr_scheduler.ReduceLROnPlateau(opt, patience=3, factor=0.5)
 
     best_f1, wait = 0.0, 0
     for ep in range(1, epochs + 1):
@@ -177,27 +161,16 @@ def train_model(data_path="spam.tsv", epochs=20, batch=32, lr=1e-3,
                 labs.extend(yb.tolist())
         vf1 = f1_score(labs, preds, average="binary")
         sched.step(total_loss / len(tr_dl))
-        print(
-            f"[Train] Epoch {ep:02d}/{epochs}  loss={total_loss/len(tr_dl):.4f}  val_f1={vf1:.4f}")
+        print(f"[Train] Epoch {ep:02d}/{epochs}  loss={total_loss/len(tr_dl):.4f}  val_f1={vf1:.4f}")
 
         if vf1 > best_f1:
             best_f1 = vf1
-            wait = 0
+            wait    = 0
             torch.save({"state": model.state_dict(), "val_f1": vf1,
                         "vocab_size": len(vocab)}, str(ARTIFACTS / "model.pt"))
-            import app as _app_module
-
-
-class _VocabUnpickler(pickle.Unpickler):
-    def find_class(self, module, name):
-        if name == "Vocabulary":
-            return Vocabulary
-        return super().find_class(module, name)
-
-
-with open(ARTIFACTS / "vocab.pkl", "rb") as f:
-    vocab = _VocabUnpickler(f).load()
-            print(f"  ✓ Saved (val_f1={vf1:.4f})")
+            with open(ARTIFACTS / "vocab.json", "w") as f:
+                json.dump(vocab.token2idx, f)
+            print(f"  Saved (val_f1={vf1:.4f})")
         else:
             wait += 1
             if wait >= patience:
@@ -226,8 +199,9 @@ _predictor = None
 def load_predictor():
     global _predictor
     try:
-        with open(ARTIFACTS / "vocab.pkl", "rb") as f:
-            vocab = pickle.load(f)
+        vocab = Vocabulary()
+        with open(ARTIFACTS / "vocab.json") as f:
+            vocab.token2idx = json.load(f)
         ckpt  = torch.load(str(ARTIFACTS / "model.pt"), map_location="cpu")
         model = SpamBiLSTM(len(vocab), dropout=0.0)
         model.load_state_dict(ckpt["state"])
@@ -276,7 +250,7 @@ def model_info():
 #  5. DATABASE
 # ══════════════════════════════════════════════════════════════
 
-DB = "history.db"
+DB = os.path.join(tempfile.gettempdir(), "history.db")
 
 def get_db():
     if "db" not in g:
@@ -401,11 +375,8 @@ def route_delete(pid):
 #  7. ENTRY POINT  —  works for both local and Render/gunicorn
 # ══════════════════════════════════════════════════════════════
 
-# Always initialise the DB and load the model when the module is imported.
-# This covers gunicorn (which imports the module directly, never __main__).
 init_db()
 
-# Only train / parse CLI args when run directly with `python app.py`
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--train",  action="store_true")
@@ -421,9 +392,8 @@ if __name__ == "__main__":
         train_model(data_path=args.data, epochs=args.epochs)
 
     load_predictor()
-    print(f"\n🛡  SpamShield → http://localhost:{args.port}\n")
+    print(f"\nSpamShield -> http://localhost:{args.port}\n")
     port = int(os.environ.get("PORT", args.port))
     app.run(host="0.0.0.0", port=port, debug=False)
 else:
-    # Imported by gunicorn — just load the pre-trained model
     load_predictor()

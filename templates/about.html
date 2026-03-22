@@ -43,7 +43,7 @@ nav{display:flex;gap:4px}
 .ssub{font-size:16px;color:#8899b0;margin-top:7px;line-height:1.6}
 
 /* ── Layout ── */
-.agrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.agrid{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:24px}
 .fc{background:#0f1520;border:1px solid #1a2535;border-radius:22px;padding:34px;margin-bottom:24px}
 .fc:last-child{margin-bottom:0}
 
@@ -58,7 +58,6 @@ nav{display:flex;gap:4px}
 .aflow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:24px 0}
 .astep{background:#070b0f;border:1px solid #1a2535;border-radius:12px;padding:16px 18px;text-align:center;flex:1;min-width:90px;transition:all .2s}
 .astep:hover{border-color:#4f8eff;background:#0a1830}
-.asico{font-size:24px;margin-bottom:7px}
 .asname{font-size:14px;font-weight:600;color:#e2eaf5;font-family:'Space Grotesk',sans-serif}
 .asdesc{font-size:12px;color:#4a5a70;margin-top:4px;font-family:'JetBrains Mono',monospace}
 .aarr{color:#4a5a70;font-size:20px;padding:0 4px;flex-shrink:0}
@@ -140,75 +139,30 @@ code{color:#7aadff;font-family:'JetBrains Mono',monospace;font-size:14px;backgro
         <p class="atxt">Trained on 5,576 real SMS messages from the UCI SMS Spam Collection dataset, achieving over 97%
           F1-score.</p>
       </div>
-      <div class="fc" style="margin-bottom:0">
-        <div class="asect">Model Performance</div>
-        <table class="mtbl">
-          <thead>
-            <tr>
-              <th>Metric</th>
-              <th>Ham</th>
-              <th>Spam</th>
-              <th>Overall</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Precision</td>
-              <td class="mv b">98.2%</td>
-              <td class="mv b">96.4%</td>
-              <td class="mv b">97.3%</td>
-            </tr>
-            <tr>
-              <td>Recall</td>
-              <td class="mv g">99.1%</td>
-              <td class="mv g">93.8%</td>
-              <td class="mv g">96.5%</td>
-            </tr>
-            <tr>
-              <td>F1 Score</td>
-              <td class="mv g">98.6%</td>
-              <td class="mv g">95.1%</td>
-              <td class="mv g">97.8%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
     <div class="fc">
       <div class="asect">Model Architecture</div>
       <div class="aflow">
         <div class="astep">
-          <div class="asico">📝</div>
           <div class="asname">Input</div>
           <div class="asdesc">Raw email</div>
         </div>
         <span class="aarr">→</span>
         <div class="astep">
-          <div class="asico">🔤</div>
           <div class="asname">Tokenize</div>
           <div class="asdesc">Word split</div>
         </div>
         <span class="aarr">→</span>
         <div class="astep">
-          <div class="asico">📊</div>
           <div class="asname">Embedding</div>
           <div class="asdesc">128-dim</div>
         </div>
         <span class="aarr">→</span>
         <div class="astep">
-          <div class="asico">🧠</div>
           <div class="asname">BiLSTM</div>
           <div class="asdesc">2 layers</div>
         </div>
         <span class="aarr">→</span>
         <div class="astep">
-          <div class="asico">💧</div>
-          <div class="asname">Dropout</div>
-          <div class="asdesc">0.4 rate</div>
-        </div>
-        <span class="aarr">→</span>
-        <div class="astep">
-          <div class="asico">🎯</div>
           <div class="asname">Classify</div>
           <div class="asdesc">Spam / Ham</div>
         </div>
@@ -249,7 +203,7 @@ code{color:#7aadff;font-family:'JetBrains Mono',monospace;font-size:14px;backgro
       <div class="asect">FAQ</div>
       <div class="fqi">
         <div class="fqq">Why BiLSTM instead of BERT?</div>
-        <div class="fqa">With 5,576 training samples, BERT (110M parameters) would overfit severely. BiLSTM with ~2.4M
+        <div class="fqa">With 15000 training samples, BERT (110M parameters) would overfit severely. BiLSTM with ~2.4M
           parameters is the sweet spot — powerful enough to learn spam patterns, small enough to generalize.</div>
       </div>
       <div class="fqi">

@@ -18,6 +18,66 @@
         "documentation": {}
     },
     {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "Vocabulary",
         "importPath": "preprocess",
         "description": "preprocess",
@@ -55,57 +115,6 @@
         "description": "model",
         "isExtraImport": true,
         "detail": "model",
-        "documentation": {}
-    },
-    {
-        "label": "torch.nn.functional",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "torch.nn.functional",
-        "description": "torch.nn.functional",
-        "detail": "torch.nn.functional",
-        "documentation": {}
-    },
-    {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
         "documentation": {}
     },
     {
@@ -225,51 +234,6 @@
         "documentation": {}
     },
     {
-        "label": "pickle",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pickle",
-        "description": "pickle",
-        "detail": "pickle",
-        "documentation": {}
-    },
-    {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "sqlite3",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sqlite3",
-        "description": "sqlite3",
-        "detail": "sqlite3",
-        "documentation": {}
-    },
-    {
-        "label": "argparse",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "argparse",
-        "description": "argparse",
-        "detail": "argparse",
-        "documentation": {}
-    },
-    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -323,7 +287,7 @@
         "kind": 6,
         "importPath": "model.predictor",
         "description": "model.predictor",
-        "peekOfCode": "class SpamPredictor:\n    _inst = None\n    def __init__(self):\n        self.device = torch.device(\n            \"cuda\" if torch.cuda.is_available() else \"cpu\")\n        self.vocab = Vocabulary.load(ARTIFACTS / \"vocab.json\") as f:\n    vocab = Vocabulary()\n    vocab.token2idx = json.load(f)\n    ckpt = torch.load(str(ARTIFACTS / \"best_model.pt\"),\n    map_location=self.device)",
+        "peekOfCode": "class SpamPredictor:\n    _inst = None\n    def __init__(self):\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n        # Load vocabulary from JSON\n        self.vocab = Vocabulary()\n        with open(ARTIFACTS / \"vocab.json\") as f:\n            self.vocab.token2idx = json.load(f)\n        # Load model checkpoint\n        ckpt = torch.load(str(ARTIFACTS / \"best_model.pt\"), map_location=self.device)",
         "detail": "model.predictor",
         "documentation": {}
     },
@@ -332,7 +296,7 @@
         "kind": 5,
         "importPath": "model.predictor",
         "description": "model.predictor",
-        "peekOfCode": "ARTIFACTS = Path(__file__).parent / \"artifacts\"\nclass SpamPredictor:\n    _inst = None\n    def __init__(self):\n        self.device = torch.device(\n            \"cuda\" if torch.cuda.is_available() else \"cpu\")\n        self.vocab = Vocabulary.load(ARTIFACTS / \"vocab.json\") as f:\n    vocab = Vocabulary()\n    vocab.token2idx = json.load(f)\n    ckpt = torch.load(str(ARTIFACTS / \"best_model.pt\"),",
+        "peekOfCode": "ARTIFACTS = Path(__file__).parent / \"artifacts\"\nclass SpamPredictor:\n    _inst = None\n    def __init__(self):\n        self.device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n        # Load vocabulary from JSON\n        self.vocab = Vocabulary()\n        with open(ARTIFACTS / \"vocab.json\") as f:\n            self.vocab.token2idx = json.load(f)\n        # Load model checkpoint",
         "detail": "model.predictor",
         "documentation": {}
     },
@@ -377,7 +341,7 @@
         "kind": 2,
         "importPath": "model.train",
         "description": "model.train",
-        "peekOfCode": "def load_data(path):\n    p = Path(path)\n    sep = \"\\t\" if p.suffix == \".tsv\" else \",\"\n    df  = pd.read_csv(path, sep=sep, on_bad_lines=\"skip\")\n    df.columns = [c.lower().strip() for c in df.columns]\n    # Rename any known column variants → label, text\n    rename = {}\n    for c in df.columns:\n        if c in (\"message\",\"sms\",\"body\",\"v2\",\"text_message\"): rename[c] = \"text\"\n        if c in (\"v1\",\"category\",\"class\",\"type\",\"target\"):    rename[c] = \"label\"",
+        "peekOfCode": "def load_data(path):\n    p   = Path(path)\n    sep = \"\\t\" if p.suffix == \".tsv\" else \",\"\n    df  = pd.read_csv(path, sep=sep, on_bad_lines=\"skip\")\n    df.columns = [c.lower().strip() for c in df.columns]\n    rename = {}\n    for c in df.columns:\n        if c in (\"message\", \"sms\", \"body\", \"v2\", \"text_message\"): rename[c] = \"text\"\n        if c in (\"v1\", \"category\", \"class\", \"type\", \"target\"):    rename[c] = \"label\"\n    if rename:",
         "detail": "model.train",
         "documentation": {}
     },
@@ -395,7 +359,7 @@
         "kind": 2,
         "importPath": "model.train",
         "description": "model.train",
-        "peekOfCode": "def train(args):\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"Device: {device}\")\n    texts, labels = load_data(args.data)\n    Xtr, Xte, ytr, yte = train_test_split(texts, labels, test_size=0.2, random_state=42, stratify=labels)\n    Xv,  Xt,  yv,  yt  = train_test_split(Xte,  yte,   test_size=0.5, random_state=42, stratify=yte)\n    vocab = Vocabulary()\n    vocab.build(Xtr)\n    vocab.save(ARTIFACTS / \"vocab.json\", \"w\") as f:\n    json.dump(vocab.token2idx, f)",
+        "peekOfCode": "def train(args):\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"Device: {device}\")\n    texts, labels = load_data(args.data)\n    Xtr, Xte, ytr, yte = train_test_split(texts, labels, test_size=0.2, random_state=42, stratify=labels)\n    Xv,  Xt,  yv,  yt  = train_test_split(Xte,  yte,   test_size=0.5, random_state=42, stratify=yte)\n    vocab = Vocabulary()\n    vocab.build(Xtr)\n    # Save vocabulary as JSON\n    with open(ARTIFACTS / \"vocab.json\", \"w\") as f:",
         "detail": "model.train",
         "documentation": {}
     },
@@ -404,7 +368,7 @@
         "kind": 5,
         "importPath": "model.train",
         "description": "model.train",
-        "peekOfCode": "ARTIFACTS = Path(__file__).parent / \"artifacts\"\nARTIFACTS.mkdir(exist_ok=True)\ndef load_data(path):\n    p = Path(path)\n    sep = \"\\t\" if p.suffix == \".tsv\" else \",\"\n    df  = pd.read_csv(path, sep=sep, on_bad_lines=\"skip\")\n    df.columns = [c.lower().strip() for c in df.columns]\n    # Rename any known column variants → label, text\n    rename = {}\n    for c in df.columns:",
+        "peekOfCode": "ARTIFACTS = Path(__file__).parent / \"artifacts\"\nARTIFACTS.mkdir(exist_ok=True)\ndef load_data(path):\n    p   = Path(path)\n    sep = \"\\t\" if p.suffix == \".tsv\" else \",\"\n    df  = pd.read_csv(path, sep=sep, on_bad_lines=\"skip\")\n    df.columns = [c.lower().strip() for c in df.columns]\n    rename = {}\n    for c in df.columns:\n        if c in (\"message\", \"sms\", \"body\", \"v2\", \"text_message\"): rename[c] = \"text\"",
         "detail": "model.train",
         "documentation": {}
     },
@@ -436,15 +400,6 @@
         "documentation": {}
     },
     {
-        "label": "_VocabUnpickler",
-        "kind": 6,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "class _VocabUnpickler(pickle.Unpickler):\n    def find_class(self, module, name):\n        if name == \"Vocabulary\":\n            return Vocabulary\n        return super().find_class(module, name)\nwith open(ARTIFACTS / \"vocab.pkl\", \"rb\") as f:\n    vocab = _VocabUnpickler(f).load()\n            print(f\"  ✓ Saved (val_f1={vf1:.4f})\")\n        else:\n            wait += 1",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
         "label": "clean",
         "kind": 2,
         "importPath": "app",
@@ -467,7 +422,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def train_model(data_path=\"spam.tsv\", epochs=20, batch=32, lr=1e-3,\n                max_len=256, patience=5):\n    import pandas as pd\n    from sklearn.model_selection import train_test_split\n    from sklearn.metrics import f1_score, classification_report\n    ARTIFACTS.mkdir(exist_ok=True)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"\\n[Train] device={device}\")\n    sep = \"\\t\" if data_path.endswith(\".tsv\") else \",\"\n    df = pd.read_csv(data_path, sep=sep, on_bad_lines=\"skip\")",
+        "peekOfCode": "def train_model(data_path=\"spam.tsv\", epochs=20, batch=32, lr=1e-3,\n                max_len=256, patience=5):\n    import pandas as pd\n    from sklearn.model_selection import train_test_split\n    from sklearn.metrics import f1_score, classification_report\n    ARTIFACTS.mkdir(exist_ok=True)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"\\n[Train] device={device}\")\n    sep = \"\\t\" if data_path.endswith(\".tsv\") else \",\"\n    df  = pd.read_csv(data_path, sep=sep, on_bad_lines=\"skip\")",
         "detail": "app",
         "documentation": {}
     },
@@ -476,7 +431,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def load_predictor():\n    global _predictor\n    try:\n        with open(ARTIFACTS / \"vocab.pkl\", \"rb\") as f:\n            vocab = pickle.load(f)\n        ckpt  = torch.load(str(ARTIFACTS / \"model.pt\"), map_location=\"cpu\")\n        model = SpamBiLSTM(len(vocab), dropout=0.0)\n        model.load_state_dict(ckpt[\"state\"])\n        model.eval()\n        _predictor = {",
+        "peekOfCode": "def load_predictor():\n    global _predictor\n    try:\n        vocab = Vocabulary()\n        with open(ARTIFACTS / \"vocab.json\") as f:\n            vocab.token2idx = json.load(f)\n        ckpt  = torch.load(str(ARTIFACTS / \"model.pt\"), map_location=\"cpu\")\n        model = SpamBiLSTM(len(vocab), dropout=0.0)\n        model.load_state_dict(ckpt[\"state\"])\n        model.eval()",
         "detail": "app",
         "documentation": {}
     },
@@ -602,7 +557,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def route_delete(pid):\n    db = get_db()\n    db.execute(\"DELETE FROM predictions WHERE id=?\", (pid,))\n    db.commit()\n    return jsonify({\"ok\": True})\n# ══════════════════════════════════════════════════════════════\n#  7. ENTRY POINT  —  works for both local and Render/gunicorn\n# ══════════════════════════════════════════════════════════════\n# Always initialise the DB and load the model when the module is imported.\n# This covers gunicorn (which imports the module directly, never __main__).",
+        "peekOfCode": "def route_delete(pid):\n    db = get_db()\n    db.execute(\"DELETE FROM predictions WHERE id=?\", (pid,))\n    db.commit()\n    return jsonify({\"ok\": True})\n# ══════════════════════════════════════════════════════════════\n#  7. ENTRY POINT  —  works for both local and Render/gunicorn\n# ══════════════════════════════════════════════════════════════\ninit_db()\nif __name__ == \"__main__\":",
         "detail": "app",
         "documentation": {}
     },
@@ -620,7 +575,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "_predictor = None\ndef load_predictor():\n    global _predictor\n    try:\n        with open(ARTIFACTS / \"vocab.pkl\", \"rb\") as f:\n            vocab = pickle.load(f)\n        ckpt  = torch.load(str(ARTIFACTS / \"model.pt\"), map_location=\"cpu\")\n        model = SpamBiLSTM(len(vocab), dropout=0.0)\n        model.load_state_dict(ckpt[\"state\"])\n        model.eval()",
+        "peekOfCode": "_predictor = None\ndef load_predictor():\n    global _predictor\n    try:\n        vocab = Vocabulary()\n        with open(ARTIFACTS / \"vocab.json\") as f:\n            vocab.token2idx = json.load(f)\n        ckpt  = torch.load(str(ARTIFACTS / \"model.pt\"), map_location=\"cpu\")\n        model = SpamBiLSTM(len(vocab), dropout=0.0)\n        model.load_state_dict(ckpt[\"state\"])",
         "detail": "app",
         "documentation": {}
     },
@@ -629,7 +584,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "DB = \"history.db\"\ndef get_db():\n    if \"db\" not in g:\n        g.db = sqlite3.connect(DB)\n        g.db.row_factory = sqlite3.Row\n    return g.db\ndef init_db():\n    with sqlite3.connect(DB) as db:\n        db.execute(\"\"\"\n            CREATE TABLE IF NOT EXISTS predictions (",
+        "peekOfCode": "DB = os.path.join(tempfile.gettempdir(), \"history.db\")\ndef get_db():\n    if \"db\" not in g:\n        g.db = sqlite3.connect(DB)\n        g.db.row_factory = sqlite3.Row\n    return g.db\ndef init_db():\n    with sqlite3.connect(DB) as db:\n        db.execute(\"\"\"\n            CREATE TABLE IF NOT EXISTS predictions (",
         "detail": "app",
         "documentation": {}
     },
