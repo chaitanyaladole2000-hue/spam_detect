@@ -1,0 +1,645 @@
+[
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "Vocabulary",
+        "importPath": "preprocess",
+        "description": "preprocess",
+        "isExtraImport": true,
+        "detail": "preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "Vocabulary",
+        "importPath": "preprocess",
+        "description": "preprocess",
+        "isExtraImport": true,
+        "detail": "preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "SpamDataset",
+        "importPath": "preprocess",
+        "description": "preprocess",
+        "isExtraImport": true,
+        "detail": "preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "SpamBiLSTM",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {}
+    },
+    {
+        "label": "SpamBiLSTM",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "re,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re.",
+        "description": "re.",
+        "detail": "re.",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dataset",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "Dataset",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "sys,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys.",
+        "description": "sys.",
+        "detail": "sys.",
+        "documentation": {}
+    },
+    {
+        "label": "argparse,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse.",
+        "description": "argparse.",
+        "detail": "argparse.",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "classification_report",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "f1_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "g",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "SpamBiLSTM",
+        "kind": 6,
+        "importPath": "model.model",
+        "description": "model.model",
+        "peekOfCode": "class SpamBiLSTM(nn.Module):\n    def __init__(self, vocab_size, embed_dim=128, hidden_dim=256,\n                 num_layers=2, dropout=0.4, num_classes=2, pad_idx=0):\n        super().__init__()\n        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=pad_idx)\n        self.lstm = nn.LSTM(embed_dim, hidden_dim, num_layers,\n                            batch_first=True, dropout=dropout if num_layers > 1 else 0.0,\n                            bidirectional=True)\n        self.dropout = nn.Dropout(dropout)\n        self.fc = nn.Linear(hidden_dim * 2, num_classes)",
+        "detail": "model.model",
+        "documentation": {}
+    },
+    {
+        "label": "SpamPredictor",
+        "kind": 6,
+        "importPath": "model.predictor",
+        "description": "model.predictor",
+        "peekOfCode": "class SpamPredictor:\n    _inst = None\n    def __init__(self):\n        self.device = torch.device(\n            \"cuda\" if torch.cuda.is_available() else \"cpu\")\n        self.vocab = Vocabulary.load(ARTIFACTS / \"vocab.json\") as f:\n    vocab = Vocabulary()\n    vocab.token2idx = json.load(f)\n    ckpt = torch.load(str(ARTIFACTS / \"best_model.pt\"),\n    map_location=self.device)",
+        "detail": "model.predictor",
+        "documentation": {}
+    },
+    {
+        "label": "ARTIFACTS",
+        "kind": 5,
+        "importPath": "model.predictor",
+        "description": "model.predictor",
+        "peekOfCode": "ARTIFACTS = Path(__file__).parent / \"artifacts\"\nclass SpamPredictor:\n    _inst = None\n    def __init__(self):\n        self.device = torch.device(\n            \"cuda\" if torch.cuda.is_available() else \"cpu\")\n        self.vocab = Vocabulary.load(ARTIFACTS / \"vocab.json\") as f:\n    vocab = Vocabulary()\n    vocab.token2idx = json.load(f)\n    ckpt = torch.load(str(ARTIFACTS / \"best_model.pt\"),",
+        "detail": "model.predictor",
+        "documentation": {}
+    },
+    {
+        "label": "Vocabulary",
+        "kind": 6,
+        "importPath": "model.preprocess",
+        "description": "model.preprocess",
+        "peekOfCode": "class Vocabulary:\n    PAD, UNK = \"<PAD>\", \"<UNK>\"\n    def __init__(self, max_size=30000, min_freq=2):\n        self.max_size = max_size\n        self.min_freq = min_freq\n        self.token2idx = {}\n        self.idx2token = {}\n    def build(self, texts):\n        counter = Counter()\n        for t in texts:",
+        "detail": "model.preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "SpamDataset",
+        "kind": 6,
+        "importPath": "model.preprocess",
+        "description": "model.preprocess",
+        "peekOfCode": "class SpamDataset(Dataset):\n    def __init__(self, texts, labels, vocab, max_len=256):\n        self.X = [vocab.encode(t, max_len) for t in texts]\n        self.y = labels\n    def __len__(self): return len(self.y)\n    def __getitem__(self, i):\n        return (torch.tensor(self.X[i], dtype=torch.long),\n                torch.tensor(self.y[i], dtype=torch.long))",
+        "detail": "model.preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "clean",
+        "kind": 2,
+        "importPath": "model.preprocess",
+        "description": "model.preprocess",
+        "peekOfCode": "def clean(text: str) -> str:\n    text = text.lower()\n    text = re.sub(r\"<[^>]+>\", \" \", text)\n    text = re.sub(r\"http\\S+|www\\.\\S+\", \"<URL>\", text)\n    text = re.sub(r\"\\S+@\\S+\", \"<EMAIL>\", text)\n    text = re.sub(r\"\\d+\", \"<NUM>\", text)\n    text = re.sub(r\"[^\\w\\s<>]\", \" \", text)\n    return re.sub(r\"\\s+\", \" \", text).strip()\ndef tokenize(text: str) -> List[str]:\n    return clean(text).split()",
+        "detail": "model.preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "tokenize",
+        "kind": 2,
+        "importPath": "model.preprocess",
+        "description": "model.preprocess",
+        "peekOfCode": "def tokenize(text: str) -> List[str]:\n    return clean(text).split()\nclass Vocabulary:\n    PAD, UNK = \"<PAD>\", \"<UNK>\"\n    def __init__(self, max_size=30000, min_freq=2):\n        self.max_size = max_size\n        self.min_freq = min_freq\n        self.token2idx = {}\n        self.idx2token = {}\n    def build(self, texts):",
+        "detail": "model.preprocess",
+        "documentation": {}
+    },
+    {
+        "label": "load_data",
+        "kind": 2,
+        "importPath": "model.train",
+        "description": "model.train",
+        "peekOfCode": "def load_data(path):\n    p = Path(path)\n    sep = \"\\t\" if p.suffix == \".tsv\" else \",\"\n    df  = pd.read_csv(path, sep=sep, on_bad_lines=\"skip\")\n    df.columns = [c.lower().strip() for c in df.columns]\n    # Rename any known column variants → label, text\n    rename = {}\n    for c in df.columns:\n        if c in (\"message\",\"sms\",\"body\",\"v2\",\"text_message\"): rename[c] = \"text\"\n        if c in (\"v1\",\"category\",\"class\",\"type\",\"target\"):    rename[c] = \"label\"",
+        "detail": "model.train",
+        "documentation": {}
+    },
+    {
+        "label": "evaluate",
+        "kind": 2,
+        "importPath": "model.train",
+        "description": "model.train",
+        "peekOfCode": "def evaluate(model, loader, device):\n    model.eval()\n    preds, labels = [], []\n    with torch.no_grad():\n        for X, y in loader:\n            X, y = X.to(device), y.to(device)\n            p = model(X).argmax(1)\n            preds.extend(p.cpu().tolist())\n            labels.extend(y.cpu().tolist())\n    return f1_score(labels, preds, average=\"binary\"), preds, labels",
+        "detail": "model.train",
+        "documentation": {}
+    },
+    {
+        "label": "train",
+        "kind": 2,
+        "importPath": "model.train",
+        "description": "model.train",
+        "peekOfCode": "def train(args):\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"Device: {device}\")\n    texts, labels = load_data(args.data)\n    Xtr, Xte, ytr, yte = train_test_split(texts, labels, test_size=0.2, random_state=42, stratify=labels)\n    Xv,  Xt,  yv,  yt  = train_test_split(Xte,  yte,   test_size=0.5, random_state=42, stratify=yte)\n    vocab = Vocabulary()\n    vocab.build(Xtr)\n    vocab.save(ARTIFACTS / \"vocab.json\", \"w\") as f:\n    json.dump(vocab.token2idx, f)",
+        "detail": "model.train",
+        "documentation": {}
+    },
+    {
+        "label": "ARTIFACTS",
+        "kind": 5,
+        "importPath": "model.train",
+        "description": "model.train",
+        "peekOfCode": "ARTIFACTS = Path(__file__).parent / \"artifacts\"\nARTIFACTS.mkdir(exist_ok=True)\ndef load_data(path):\n    p = Path(path)\n    sep = \"\\t\" if p.suffix == \".tsv\" else \",\"\n    df  = pd.read_csv(path, sep=sep, on_bad_lines=\"skip\")\n    df.columns = [c.lower().strip() for c in df.columns]\n    # Rename any known column variants → label, text\n    rename = {}\n    for c in df.columns:",
+        "detail": "model.train",
+        "documentation": {}
+    },
+    {
+        "label": "Vocabulary",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class Vocabulary:\n    def __init__(self, max_size=30000, min_freq=2):\n        self.max_size = max_size\n        self.min_freq = min_freq\n        self.token2idx = {\"<PAD>\": 0, \"<UNK>\": 1}\n    def build(self, texts):\n        counter = Counter(t for text in texts for t in tokenize(text))\n        for token, freq in counter.most_common(self.max_size - 2):\n            if freq < self.min_freq:\n                break",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "SpamDataset",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class SpamDataset(Dataset):\n    def __init__(self, texts, labels, vocab, max_len=256):\n        self.X = [vocab.encode(t, max_len) for t in texts]\n        self.y = labels\n    def __len__(self):\n        return len(self.y)\n    def __getitem__(self, i):\n        return (torch.tensor(self.X[i], dtype=torch.long),\n                torch.tensor(self.y[i], dtype=torch.long))\n# ══════════════════════════════════════════════════════════════",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "SpamBiLSTM",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class SpamBiLSTM(nn.Module):\n    def __init__(self, vocab_size, embed_dim=128, hidden_dim=256,\n                 num_layers=2, dropout=0.4):\n        super().__init__()\n        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)\n        self.lstm = nn.LSTM(embed_dim, hidden_dim, num_layers,\n                            batch_first=True,\n                            dropout=dropout if num_layers > 1 else 0.0,\n                            bidirectional=True)\n        self.drop = nn.Dropout(dropout)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_VocabUnpickler",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class _VocabUnpickler(pickle.Unpickler):\n    def find_class(self, module, name):\n        if name == \"Vocabulary\":\n            return Vocabulary\n        return super().find_class(module, name)\nwith open(ARTIFACTS / \"vocab.pkl\", \"rb\") as f:\n    vocab = _VocabUnpickler(f).load()\n            print(f\"  ✓ Saved (val_f1={vf1:.4f})\")\n        else:\n            wait += 1",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "clean",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def clean(text):\n    text = text.lower()\n    text = re.sub(r\"<[^>]+>\", \" \", text)\n    text = re.sub(r\"http\\S+|www\\.\\S+\", \"<URL>\", text)\n    text = re.sub(r\"\\S+@\\S+\", \"<EMAIL>\", text)\n    text = re.sub(r\"\\d+\", \"<NUM>\", text)\n    text = re.sub(r\"[^\\w\\s<>]\", \" \", text)\n    return re.sub(r\"\\s+\", \" \", text).strip()\ndef tokenize(text):\n    return clean(text).split()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "tokenize",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def tokenize(text):\n    return clean(text).split()\nclass Vocabulary:\n    def __init__(self, max_size=30000, min_freq=2):\n        self.max_size = max_size\n        self.min_freq = min_freq\n        self.token2idx = {\"<PAD>\": 0, \"<UNK>\": 1}\n    def build(self, texts):\n        counter = Counter(t for text in texts for t in tokenize(text))\n        for token, freq in counter.most_common(self.max_size - 2):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "train_model",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def train_model(data_path=\"spam.tsv\", epochs=20, batch=32, lr=1e-3,\n                max_len=256, patience=5):\n    import pandas as pd\n    from sklearn.model_selection import train_test_split\n    from sklearn.metrics import f1_score, classification_report\n    ARTIFACTS.mkdir(exist_ok=True)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"\\n[Train] device={device}\")\n    sep = \"\\t\" if data_path.endswith(\".tsv\") else \",\"\n    df = pd.read_csv(data_path, sep=sep, on_bad_lines=\"skip\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_predictor",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_predictor():\n    global _predictor\n    try:\n        with open(ARTIFACTS / \"vocab.pkl\", \"rb\") as f:\n            vocab = pickle.load(f)\n        ckpt  = torch.load(str(ARTIFACTS / \"model.pt\"), map_location=\"cpu\")\n        model = SpamBiLSTM(len(vocab), dropout=0.0)\n        model.load_state_dict(ckpt[\"state\"])\n        model.eval()\n        _predictor = {",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def predict(body=\"\"):\n    if _predictor is None:\n        return None\n    ids = _predictor[\"vocab\"].encode(body.strip(), 256)\n    x   = torch.tensor([ids], dtype=torch.long)\n    with torch.no_grad():\n        probs = F.softmax(_predictor[\"model\"](x), dim=1).squeeze()\n    spam = float(probs[1])\n    ham  = float(probs[0])\n    return {",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "model_info",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def model_info():\n    if _predictor is None:\n        return {}\n    m = _predictor[\"model\"]\n    return {\n        \"architecture\": \"BiLSTM\",\n        \"vocab_size\":   len(_predictor[\"vocab\"]),\n        \"parameters\":   sum(p.numel() for p in m.parameters()),\n        \"val_f1\":       round(_predictor[\"val_f1\"], 4),\n        \"device\":       \"cuda\" if torch.cuda.is_available() else \"cpu\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_db():\n    if \"db\" not in g:\n        g.db = sqlite3.connect(DB)\n        g.db.row_factory = sqlite3.Row\n    return g.db\ndef init_db():\n    with sqlite3.connect(DB) as db:\n        db.execute(\"\"\"\n            CREATE TABLE IF NOT EXISTS predictions (\n                id          INTEGER PRIMARY KEY AUTOINCREMENT,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def init_db():\n    with sqlite3.connect(DB) as db:\n        db.execute(\"\"\"\n            CREATE TABLE IF NOT EXISTS predictions (\n                id          INTEGER PRIMARY KEY AUTOINCREMENT,\n                body        TEXT,\n                label       TEXT,\n                spam_score  REAL,\n                ham_score   REAL,\n                confidence  REAL,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "close_db",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def close_db(e=None):\n    db = g.pop(\"db\", None)\n    if db:\n        db.close()\n# ── Pages ─────────────────────────────────────────────────────\n@app.route(\"/\")\ndef page_home():\n    return render_template(\"home.html\")\n@app.route(\"/detect\")\ndef page_detect():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "page_home",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def page_home():\n    return render_template(\"home.html\")\n@app.route(\"/detect\")\ndef page_detect():\n    return render_template(\"detect.html\")\n@app.route(\"/analytics\")\ndef page_analytics():\n    return render_template(\"analytics.html\")\n@app.route(\"/about\")\ndef page_about():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "page_detect",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def page_detect():\n    return render_template(\"detect.html\")\n@app.route(\"/analytics\")\ndef page_analytics():\n    return render_template(\"analytics.html\")\n@app.route(\"/about\")\ndef page_about():\n    return render_template(\"about.html\")\n# ── API ───────────────────────────────────────────────────────\n@app.route(\"/predict\", methods=[\"POST\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "page_analytics",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def page_analytics():\n    return render_template(\"analytics.html\")\n@app.route(\"/about\")\ndef page_about():\n    return render_template(\"about.html\")\n# ── API ───────────────────────────────────────────────────────\n@app.route(\"/predict\", methods=[\"POST\"])\ndef route_predict():\n    if _predictor is None:\n        return jsonify({\"error\": \"Model not ready. Run: python app.py --train\"}), 503",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "page_about",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def page_about():\n    return render_template(\"about.html\")\n# ── API ───────────────────────────────────────────────────────\n@app.route(\"/predict\", methods=[\"POST\"])\ndef route_predict():\n    if _predictor is None:\n        return jsonify({\"error\": \"Model not ready. Run: python app.py --train\"}), 503\n    d    = request.get_json()\n    body = d.get(\"body\", \"\").strip()\n    if not body:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "route_predict",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def route_predict():\n    if _predictor is None:\n        return jsonify({\"error\": \"Model not ready. Run: python app.py --train\"}), 503\n    d    = request.get_json()\n    body = d.get(\"body\", \"\").strip()\n    if not body:\n        return jsonify({\"error\": \"Body is required\"}), 400\n    r   = predict(body)\n    db  = get_db()\n    cur = db.execute(",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "route_history",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def route_history():\n    label = request.args.get(\"label\")\n    page  = int(request.args.get(\"page\", 1))\n    pp    = int(request.args.get(\"per_page\", 20))\n    db    = get_db()\n    base  = \"FROM predictions\" + (\" WHERE label=?\" if label else \"\")\n    args  = ([label] if label else [])\n    total = db.execute(\"SELECT COUNT(*) \" + base, args).fetchone()[0]\n    rows  = db.execute(\n        \"SELECT * \" + base + \" ORDER BY created_at DESC LIMIT ? OFFSET ?\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "route_feedback",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def route_feedback():\n    d  = request.get_json()\n    db = get_db()\n    db.execute(\"UPDATE predictions SET feedback=? WHERE id=?\",\n               (d[\"correct_label\"], d[\"prediction_id\"]))\n    db.commit()\n    return jsonify({\"ok\": True})\n@app.route(\"/stats\")\ndef route_stats():\n    db    = get_db()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "route_stats",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def route_stats():\n    db    = get_db()\n    total = db.execute(\"SELECT COUNT(*) FROM predictions\").fetchone()[0]\n    spam  = db.execute(\"SELECT COUNT(*) FROM predictions WHERE label='spam'\").fetchone()[0]\n    avg_c = db.execute(\"SELECT AVG(confidence) FROM predictions\").fetchone()[0] or 0\n    return jsonify({\n        \"total\":     total,\n        \"spam\":      spam,\n        \"ham\":       total - spam,\n        \"spam_rate\": round(spam / total, 4) if total else 0,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "route_delete",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def route_delete(pid):\n    db = get_db()\n    db.execute(\"DELETE FROM predictions WHERE id=?\", (pid,))\n    db.commit()\n    return jsonify({\"ok\": True})\n# ══════════════════════════════════════════════════════════════\n#  7. ENTRY POINT  —  works for both local and Render/gunicorn\n# ══════════════════════════════════════════════════════════════\n# Always initialise the DB and load the model when the module is imported.\n# This covers gunicorn (which imports the module directly, never __main__).",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "ARTIFACTS",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "ARTIFACTS = Path(\"artifacts\")\ndef train_model(data_path=\"spam.tsv\", epochs=20, batch=32, lr=1e-3,\n                max_len=256, patience=5):\n    import pandas as pd\n    from sklearn.model_selection import train_test_split\n    from sklearn.metrics import f1_score, classification_report\n    ARTIFACTS.mkdir(exist_ok=True)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"\\n[Train] device={device}\")\n    sep = \"\\t\" if data_path.endswith(\".tsv\") else \",\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "_predictor",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "_predictor = None\ndef load_predictor():\n    global _predictor\n    try:\n        with open(ARTIFACTS / \"vocab.pkl\", \"rb\") as f:\n            vocab = pickle.load(f)\n        ckpt  = torch.load(str(ARTIFACTS / \"model.pt\"), map_location=\"cpu\")\n        model = SpamBiLSTM(len(vocab), dropout=0.0)\n        model.load_state_dict(ckpt[\"state\"])\n        model.eval()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "DB",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "DB = \"history.db\"\ndef get_db():\n    if \"db\" not in g:\n        g.db = sqlite3.connect(DB)\n        g.db.row_factory = sqlite3.Row\n    return g.db\ndef init_db():\n    with sqlite3.connect(DB) as db:\n        db.execute(\"\"\"\n            CREATE TABLE IF NOT EXISTS predictions (",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.teardown_appcontext\ndef close_db(e=None):\n    db = g.pop(\"db\", None)\n    if db:\n        db.close()\n# ── Pages ─────────────────────────────────────────────────────\n@app.route(\"/\")\ndef page_home():\n    return render_template(\"home.html\")",
+        "detail": "app",
+        "documentation": {}
+    }
+]

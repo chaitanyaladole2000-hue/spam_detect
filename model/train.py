@@ -62,8 +62,8 @@ def train(args):
 
     vocab = Vocabulary()
     vocab.build(Xtr)
-    vocab.save(str(ARTIFACTS / "vocab.pkl"))
-    print(f"Vocab size: {len(vocab)}")
+    vocab.save(ARTIFACTS / "vocab.json", "w") as f:
+    json.dump(vocab.token2idx, f)
 
     tr_dl = DataLoader(SpamDataset(Xtr, ytr, vocab, args.max_len), args.batch, shuffle=True)
     vl_dl = DataLoader(SpamDataset(Xv,  yv,  vocab, args.max_len), args.batch)
