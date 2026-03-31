@@ -3,7 +3,7 @@ import torch.nn as nn
 
 class SpamBiLSTM(nn.Module):
     def __init__(self, vocab_size, embed_dim=128, hidden_dim=256,
-                 num_layers=2, dropout=0.4, num_classes=2, pad_idx=0):
+                num_layers=2, dropout=0.4, num_classes=2, pad_idx=0):
         super().__init__()
         self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=pad_idx)
         self.lstm = nn.LSTM(embed_dim, hidden_dim, num_layers,

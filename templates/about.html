@@ -5,233 +5,209 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>About — SpamShield</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,700;1,300&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,700;1,300&display=swap" rel="stylesheet">
   <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Space Grotesk',sans-serif;background:#030507;color:#e2eaf5;min-height:100vh;overflow-x:hidden;font-size:18px}
-.bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.055}
-.o1{width:700px;height:700px;background:#4f8eff;top:-250px;right:-150px;animation:d1 22s ease-in-out infinite}
-.o2{width:500px;height:500px;background:#ff3a5c;bottom:50px;left:-150px;animation:d2 28s ease-in-out infinite}
-.o3{width:350px;height:350px;background:#00e5a0;top:45%;left:38%;animation:d3 20s ease-in-out infinite}
-@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,90px)}}
-@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,-70px)}}
-@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,50px)}}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-  background-size:52px 52px}
-.wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 32px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Space Grotesk',sans-serif;background:#030507;color:#e2eaf5;min-height:100vh;overflow-x:hidden;font-size:18px}
 
-/* ── Header ── */
-header{position:sticky;top:0;z-index:200;border-bottom:1px solid #1a2535;background:rgba(3,5,7,.88);backdrop-filter:blur(24px)}
-.hdr{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:1400px;margin:0 auto;padding:0 32px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#e2eaf5;font-family:'Fraunces',serif;font-weight:700;font-size:24px}
-.lm{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#4f8eff,#9d6fff);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 24px rgba(79,142,255,.38)}
-.logo em{font-style:italic;color:#7aadff}
-nav{display:flex;gap:4px}
-.nl{display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:9px;font-size:17px;font-weight:500;color:#8899b0;text-decoration:none;transition:all .18s;border:1px solid transparent}
-.nl:hover{color:#e2eaf5;background:#0f1520;border-color:#1a2535}
-.nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.28)}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,.5)}60%{box-shadow:0 0 0 7px rgba(0,229,160,0)}}
+    /* ── Background ── */
+    .bg-orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.055}
+    .o1{width:700px;height:700px;background:#4f8eff;top:-250px;right:-150px;animation:d1 22s ease-in-out infinite}
+    .o2{width:500px;height:500px;background:#ff3a5c;bottom:50px;left:-150px;animation:d2 28s ease-in-out infinite}
+    .o3{width:350px;height:350px;background:#00e5a0;top:45%;left:38%;animation:d3 20s ease-in-out infinite}
+    @keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,90px)}}
+    @keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,-70px)}}
+    @keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,50px)}}
+    .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:52px 52px}
+    .wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 32px}
 
-/* ── Page head ── */
-.phead{padding:44px 0 32px}
-.stitle{font-family:'Fraunces',serif;font-weight:700;font-size:32px;letter-spacing:-.6px}
-.ssub{font-size:16px;color:#8899b0;margin-top:7px;line-height:1.6}
+    /* ── Header & Nav ── */
+    header{position:sticky;top:0;z-index:200;border-bottom:1px solid #1a2535;background:rgba(3,5,7,.88);backdrop-filter:blur(24px)}
+    .hdr{display:flex;align-items:center;justify-content:space-between;height:76px;max-width:1400px;margin:0 auto;padding:0 32px}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#e2eaf5;font-family:'Fraunces',serif;font-weight:700;font-size:24px}
+    .lm{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#4f8eff,#9d6fff);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 24px rgba(79,142,255,.38)}
+    .logo em{font-style:italic;color:#7aadff}
+    nav{display:flex;gap:4px}
+    .nl{display:flex;align-items:center;gap:8px;padding:9px 20px;border-radius:9px;font-size:17px;font-weight:500;color:#8899b0;text-decoration:none;transition:all .18s;border:1px solid transparent}
+    .nl:hover{color:#e2eaf5;background:#0f1520;border-color:#1a2535}
+    .nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.28)}
 
-/* ── Layout ── */
-.agrid{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:24px}
-.fc{background:#0f1520;border:1px solid #1a2535;border-radius:22px;padding:34px;margin-bottom:24px}
-.fc:last-child{margin-bottom:0}
+    /* ── Hamburger Menu ── */
+    .ham{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:42px;height:42px;background:transparent;border:1px solid #1a2535;border-radius:9px;cursor:pointer;padding:0;flex-shrink:0;transition:all .2s}
+    .ham:hover{border-color:#4f8eff;background:#0a1830}
+    .ham-line{display:block;width:18px;height:2px;background:#8899b0;border-radius:2px;transition:all .32s cubic-bezier(.4,0,.2,1)}
+    .ham.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg);background:#7aadff}
+    .ham.open .ham-line:nth-child(2){opacity:0;transform:scaleX(0)}
+    .ham.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#7aadff}
 
-/* ── Section titles ── */
-.asect{font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:-.3px;margin-bottom:18px}
+    /* ── Mobile Drawer ── */
+    .mob-nav{display:none;position:fixed;top:76px;left:0;right:0;z-index:199;background:rgba(3,5,7,.97);border-bottom:1px solid #1a2535;backdrop-filter:blur(24px);flex-direction:column;padding:10px 16px 16px;gap:4px;opacity:0;transform:translateY(-10px);pointer-events:none;transition:all .28s cubic-bezier(.4,0,.2,1)}
+    .mob-nav.open{opacity:1;transform:translateY(0);pointer-events:all}
+    .mob-nl{display:flex;align-items:center;padding:13px 16px;border-radius:10px;font-size:16px;font-weight:500;color:#8899b0;text-decoration:none;border:1px solid transparent}
+    .mob-nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.2)}
+    .overlay{display:none;position:fixed;inset:0;z-index:198;background:rgba(0,0,0,.5)}
+    .overlay.open{display:block}
 
-/* ── Body text ── */
-.atxt{font-size:16px;color:#8899b0;line-height:1.8;margin-bottom:14px}
-.atxt:last-child{margin-bottom:0}
+    /* ── Page Content ── */
+    .phead{padding:44px 0 32px}
+    .stitle{font-family:'Fraunces',serif;font-weight:700;font-size:32px;letter-spacing:-.6px}
+    .ssub{font-size:16px;color:#8899b0;margin-top:7px;line-height:1.6}
+    .agrid{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:24px}
+    .fc{background:#0f1520;border:1px solid #1a2535;border-radius:22px;padding:34px;margin-bottom:24px}
+    .asect{font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:-.3px;margin-bottom:18px}
+    .atxt{font-size:16px;color:#8899b0;line-height:1.8;margin-bottom:14px}
 
-/* ── Architecture flow ── */
-.aflow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:24px 0}
-.astep{background:#070b0f;border:1px solid #1a2535;border-radius:12px;padding:16px 18px;text-align:center;flex:1;min-width:90px;transition:all .2s}
-.astep:hover{border-color:#4f8eff;background:#0a1830}
-.asname{font-size:14px;font-weight:600;color:#e2eaf5;font-family:'Space Grotesk',sans-serif}
-.asdesc{font-size:12px;color:#4a5a70;margin-top:4px;font-family:'JetBrains Mono',monospace}
-.aarr{color:#4a5a70;font-size:20px;padding:0 4px;flex-shrink:0}
+    /* ── Architecture Flow ── */
+    .aflow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:24px 0}
+    .astep{background:#070b0f;border:1px solid #1a2535;border-radius:12px;padding:16px 18px;text-align:center;flex:1;min-width:90px;transition:all .2s}
+    .asname{font-size:14px;font-weight:600;color:#e2eaf5}
+    .asdesc{font-size:12px;color:#4a5a70;margin-top:4px;font-family:'JetBrains Mono',monospace}
+    .aarr{color:#4a5a70;font-size:20px;padding:0 4px}
 
-/* ── Metrics table ── */
-.mtbl{width:100%;border-collapse:collapse;margin-top:6px}
-.mtbl th{text-align:left;font-size:13px;color:#4a5a70;padding:12px 16px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #1a2535}
-.mtbl td{padding:14px 16px;font-size:16px;border-bottom:1px solid #1a2535;color:#8899b0}
-.mtbl tr:last-child td{border-bottom:none}
-.mtbl tr:hover td{background:#070b0f}
-.mv{font-family:'JetBrains Mono',monospace;font-weight:500}
-.mv.g{color:#00e5a0}
-.mv.b{color:#7aadff}
+    /* ── Tech Grid ── */
+    .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+    .ti{background:#070b0f;border:1px solid #1a2535;border-radius:13px;padding:20px;transition:all .15s}
+    .ti:hover{border-color:#243040;background:#131c28}
+    .tn{font-size:16px;font-weight:600;color:#e2eaf5}
+    .tr{font-size:13px;color:#4a5a70;font-family:'JetBrains Mono',monospace;margin-top:5px}
 
-/* ── Tech stack ── */
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
-.ti{background:#070b0f;border:1px solid #1a2535;border-radius:13px;padding:20px;transition:all .15s}
-.ti:hover{border-color:#243040;background:#131c28}
-.tn{font-size:16px;font-weight:600;color:#e2eaf5}
-.tr{font-size:13px;color:#4a5a70;font-family:'JetBrains Mono',monospace;margin-top:5px}
+    /* ── FAQ ── */
+    .fqi{border-bottom:1px solid #1a2535;padding:22px 0}
+    .fqi:last-child{border-bottom:none}
+    .fqq{font-size:17px;font-weight:600;color:#e2eaf5;margin-bottom:10px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .fqq:hover{color:#7aadff}
+    .fqa{font-size:16px;color:#8899b0;line-height:1.75}
 
-/* ── FAQ ── */
-.fqi{border-bottom:1px solid #1a2535;padding:22px 0}
-.fqi:last-child{border-bottom:none}
-.fqq{font-size:17px;font-weight:600;color:#e2eaf5;margin-bottom:10px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .15s}
-.fqq:hover{color:#7aadff}
-.fqa{font-size:16px;color:#8899b0;line-height:1.75}
+    /* ── CTA ── */
+    .ctabox{background:linear-gradient(135deg,#0a1830,rgba(157,111,255,.06));border:1px solid rgba(79,142,255,.2);border-radius:22px;padding:48px;text-align:center;margin-bottom:70px}
+    .ctat{font-family:'Fraunces',serif;font-weight:700;font-size:30px;margin-bottom:14px}
+    .ctas{font-size:17px;color:#8899b0;margin-bottom:30px}
+    .ctab{display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(135deg,#4f8eff,#9d6fff);color:#fff;text-decoration:none;font-weight:600;transition:0.2s}
+    .ctab:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(79,142,255,.45)}
 
-/* ── CTA box ── */
-.ctabox{background:linear-gradient(135deg,#0a1830,rgba(157,111,255,.06));border:1px solid rgba(79,142,255,.2);border-radius:22px;padding:48px;text-align:center;margin-bottom:70px}
-.ctat{font-family:'Fraunces',serif;font-weight:700;font-size:30px;letter-spacing:-.6px;margin-bottom:14px}
-.ctas{font-size:17px;color:#8899b0;margin-bottom:30px;line-height:1.65}
-.ctab{display:inline-flex;align-items:center;gap:10px;padding:17px 36px;border-radius:14px;background:linear-gradient(135deg,#4f8eff,#9d6fff);color:#fff;text-decoration:none;font-weight:600;font-size:17px;box-shadow:0 4px 24px rgba(79,142,255,.3);transition:all .2s}
-.ctab:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(79,142,255,.45)}
+    code{color:#7aadff;font-family:'JetBrains Mono',monospace;font-size:14px;background:#0a1830;padding:3px 8px;border-radius:5px}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:#030507}
+    ::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}
 
-/* ── Inline code ── */
-code{color:#7aadff;font-family:'JetBrains Mono',monospace;font-size:14px;background:#0a1830;padding:3px 8px;border-radius:5px}
-
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:#030507}
-::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}
-@media(max-width:900px){.agrid,.tgrid{grid-template-columns:1fr}}
-@media(max-width:580px){.aflow{flex-direction:column}.aarr{transform:rotate(90deg)}.hdr{padding:0 16px}.wrap{padding:0 16px}nav .nl{padding:8px 12px;font-size:14px}nav .nl span{display:none}}
-</style>
+    @media(max-width:900px){.tgrid{grid-template-columns:1fr}}
+    @media(max-width:768px){nav{display:none}.ham{display:flex}.mob-nav{display:flex}}
+    @media(max-width:580px){.aflow{flex-direction:column}.aarr{transform:rotate(90deg)}.hdr, .wrap{padding:0 16px}}
+  </style>
 </head>
 
 <body>
-  <div class="bg-orbs">
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
-    <div class="orb o3"></div>
-  </div>
+  <div class="bg-orbs"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
   <div class="bg-grid"></div>
+
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
   <header>
     <div class="hdr">
-      <a class="logo" href="/">
-        <div class="lm">🛡</div>Spam<em>Shield</em>
-      </a>
+      <a class="logo" href="/"><div class="lm">🛡</div>Spam<em>Shield</em></a>
       <nav>
         <a class="nl" href="/"><span>Home</span></a>
         <a class="nl" href="/detect"><span>Detect</span></a>
         <a class="nl" href="/analytics"><span>Analytics</span></a>
         <a class="nl active" href="/about"><span>About</span></a>
       </nav>
+      <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
     </div>
   </header>
+
+  <div class="mob-nav" id="mobNav">
+    <a class="mob-nl" href="/">Home</a>
+    <a class="mob-nl" href="/detect">Detect</a>
+    <a class="mob-nl" href="/analytics">Analytics</a>
+    <a class="mob-nl active" href="/about">About</a>
+  </div>
+
   <div class="wrap">
     <div class="phead">
       <div class="stitle">About SpamShield</div>
       <div class="ssub">Deep learning powered email classification using Bidirectional LSTM.</div>
     </div>
+
     <div class="agrid">
-      <div class="fc" style="margin-bottom:0">
+      <div class="fc">
         <div class="asect">What is SpamShield?</div>
-        <p class="atxt">SpamShield is a full-stack web application that uses a Bidirectional LSTM (BiLSTM) deep learning
-          model to classify emails as spam or legitimate (ham).</p>
-        <p class="atxt">Unlike rule-based spam filters, the BiLSTM model learns patterns from real email data —
-          understanding context, word order, and subtle linguistic cues.</p>
-        <p class="atxt">Trained on 5,576 real SMS messages from the UCI SMS Spam Collection dataset, achieving over 97%
-          F1-score.</p>
+        <p class="atxt">SpamShield is a full-stack web application that uses a Bidirectional LSTM (BiLSTM) deep learning model to classify emails as spam or legitimate (ham).</p>
+        <p class="atxt">Unlike rule-based spam filters, the BiLSTM model learns patterns from real email data — understanding context, word order, and subtle linguistic cues.</p>
+        <p class="atxt">Trained on thousands of real-world messages, achieving high precision and recall on complex spam patterns.</p>
       </div>
-    <div class="fc">
-      <div class="asect">Model Architecture</div>
-      <div class="aflow">
-        <div class="astep">
-          <div class="asname">Input</div>
-          <div class="asdesc">Raw email</div>
+
+      <div class="fc">
+        <div class="asect">Model Architecture</div>
+        <div class="aflow">
+          <div class="astep"><div class="asname">Input</div><div class="asdesc">Raw email</div></div>
+          <span class="aarr">→</span>
+          <div class="astep"><div class="asname">Tokenize</div><div class="asdesc">Word split</div></div>
+          <span class="aarr">→</span>
+          <div class="astep"><div class="asname">Embedding</div><div class="asdesc">128-dim</div></div>
+          <span class="aarr">→</span>
+          <div class="astep"><div class="asname">BiLSTM</div><div class="asdesc">2 layers</div></div>
+          <span class="aarr">→</span>
+          <div class="astep"><div class="asname">Classify</div><div class="asdesc">Spam / Ham</div></div>
         </div>
-        <span class="aarr">→</span>
-        <div class="astep">
-          <div class="asname">Tokenize</div>
-          <div class="asdesc">Word split</div>
-        </div>
-        <span class="aarr">→</span>
-        <div class="astep">
-          <div class="asname">Embedding</div>
-          <div class="asdesc">128-dim</div>
-        </div>
-        <span class="aarr">→</span>
-        <div class="astep">
-          <div class="asname">BiLSTM</div>
-          <div class="asdesc">2 layers</div>
-        </div>
-        <span class="aarr">→</span>
-        <div class="astep">
-          <div class="asname">Classify</div>
-          <div class="asdesc">Spam / Ham</div>
+        <p class="atxt">The BiLSTM reads the email both forward and backward simultaneously, capturing context from both directions. This helps catch spam signals that only make sense in context.</p>
+      </div>
+
+      <div class="fc">
+        <div class="asect">Tech Stack</div>
+        <div class="tgrid">
+          <div class="ti"><div class="tn">PyTorch 2.x</div><div class="tr">Deep learning framework</div></div>
+          <div class="ti"><div class="tn">BiLSTM</div><div class="tr">Neural network model</div></div>
+          <div class="ti"><div class="tn">Flask</div><div class="tr">Web server & API</div></div>
+          <div class="ti"><div class="tn">SQLite</div><div class="tr">Prediction history</div></div>
+          <div class="ti"><div class="tn">scikit-learn</div><div class="tr">Metrics & processing</div></div>
+          <div class="ti"><div class="tn">Python 3.13</div><div class="tr">Runtime</div></div>
         </div>
       </div>
-      <p class="atxt">The BiLSTM reads the email both forward and backward simultaneously, capturing context from both
-        directions. This helps catch spam signals that only make sense in context.</p>
-    </div>
-    <div class="fc">
-      <div class="asect">Tech Stack</div>
-      <div class="tgrid">
-        <div class="ti">
-          <div class="tn">PyTorch 2.x</div>
-          <div class="tr">Deep learning framework</div>
+
+      <div class="fc">
+        <div class="asect">FAQ</div>
+        <div class="fqi">
+          <div class="fqq">Why BiLSTM instead of BERT?</div>
+          <div class="fqa">With standard spam datasets, BERT often overfits due to its massive parameter count. BiLSTM is the sweet spot — powerful enough for context, small enough to generalize.</div>
         </div>
-        <div class="ti">
-          <div class="tn">BiLSTM</div>
-          <div class="tr">Neural network model</div>
-        </div>
-        <div class="ti">
-          <div class="tn">Flask</div>
-          <div class="tr">Web server & API</div>
-        </div>
-        <div class="ti">
-          <div class="tn">SQLite</div>
-          <div class="tr">Prediction history</div>
-        </div>
-        <div class="ti">
-          <div class="tn">scikit-learn</div>
-          <div class="tr">Metrics & data splitting</div>
-        </div>
-        <div class="ti">
-          <div class="tn">Python 3.13</div>
-          <div class="tr">Runtime</div>
+        <div class="fqi">
+          <div class="fqq">Is email data stored?</div>
+          <div class="fqa">Yes — predictions are stored locally in <code>history.db</code>. Nothing is sent to external servers beyond your own instance.</div>
         </div>
       </div>
     </div>
-    <div class="fc">
-      <div class="asect">FAQ</div>
-      <div class="fqi">
-        <div class="fqq">Why BiLSTM instead of BERT?</div>
-        <div class="fqa">With 15000 training samples, BERT (110M parameters) would overfit severely. BiLSTM with ~2.4M
-          parameters is the sweet spot — powerful enough to learn spam patterns, small enough to generalize.</div>
-      </div>
-      <div class="fqi">
-        <div class="fqq">How does it handle new spam tactics?</div>
-        <div class="fqa">The model learns word-level patterns and context rather than specific phrases, so it
-          generalizes to unseen spam. You can retrain with new data using <code>python app.py --train</code>.</div>
-      </div>
-      <div class="fqi">
-        <div class="fqq">Is email data stored?</div>
-        <div class="fqa">Yes — predictions are stored locally in <code>history.db</code> on your machine. Nothing is
-          sent to any external server.</div>
-      </div>
-      <div class="fqi">
-        <div class="fqq">How accurate is it?</div>
-        <div class="fqa">The model achieves ~97.8% F1-score on the test set. Very short or ambiguous emails may score
-          near 50% confidence — the model is honest about uncertainty.</div>
-      </div>
-    </div>
+
     <div class="ctabox">
       <div class="ctat">Ready to detect spam?</div>
       <div class="ctas">Paste any email body and get an instant classification result.</div>
-      <a href="/detect" class="ctab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2.2">
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.35-4.35" />
-        </svg>Start Detecting</a>
+      <a href="/detect" class="ctab">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
+        Start Detecting
+      </a>
     </div>
   </div>
-</body>
 
+  <script>
+    function toggleMenu(){ document.getElementById('ham').classList.contains('open') ? closeMenu() : openMenu(); }
+    function openMenu(){
+      document.getElementById('ham').classList.add('open');
+      document.getElementById('mobNav').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      document.getElementById('ham').classList.remove('open');
+      document.getElementById('mobNav').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.mob-nl').forEach(l => l.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+  </script>
+</body>
 </html>

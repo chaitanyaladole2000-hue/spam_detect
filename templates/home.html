@@ -68,7 +68,6 @@
     .htitle{font-family:'Fraunces',serif;font-weight:700;font-size:20px;margin-bottom:12px;letter-spacing:-.3px}
     .hdesc{font-size:16px;color:#8899b0;line-height:1.7}
 
-
     /* ── Animations ── */
     @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     .fu{animation:fu .45s ease both}
@@ -79,6 +78,67 @@
     ::-webkit-scrollbar-thumb{background:#243040;border-radius:3px}
     @media(max-width:900px){.sstrip,.hgrid{grid-template-columns:1fr 1fr}}
     @media(max-width:580px){.hgrid{grid-template-columns:1fr}.hdr{padding:0 16px}.wrap{padding:0 16px}nav .nl{padding:8px 12px;font-size:14px}nav .nl span{display:none}}
+
+    /* ════════════════════════════════
+       HAMBURGER + DRAWER  (new only)
+    ════════════════════════════════ */
+
+    /* 3-line button — hidden on desktop */
+    .ham{
+      display:none;
+      flex-direction:column;justify-content:center;align-items:center;
+      gap:5px;width:42px;height:42px;
+      background:transparent;border:1px solid #1a2535;border-radius:9px;
+      cursor:pointer;padding:0;flex-shrink:0;
+      transition:border-color .2s,background .2s;
+    }
+    .ham:hover{border-color:#4f8eff;background:#0a1830}
+    .ham-line{
+      display:block;width:18px;height:2px;
+      background:#8899b0;border-radius:2px;
+      transform-origin:center;
+      transition:transform .32s cubic-bezier(.4,0,.2,1),
+                 opacity   .32s cubic-bezier(.4,0,.2,1),
+                 background .2s;
+    }
+    /* Animate to X when open */
+    .ham.open{border-color:#4f8eff;background:#0a1830}
+    .ham.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg);background:#7aadff}
+    .ham.open .ham-line:nth-child(2){opacity:0;transform:scaleX(0)}
+    .ham.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:#7aadff}
+
+    /* Slide-down drawer */
+    .mob-nav{
+      display:none;
+      position:fixed;top:76px;left:0;right:0;z-index:199;
+      background:rgba(3,5,7,.97);
+      border-bottom:1px solid #1a2535;
+      backdrop-filter:blur(24px);
+      flex-direction:column;padding:10px 16px 16px;gap:4px;
+      opacity:0;transform:translateY(-10px);pointer-events:none;
+      transition:opacity .28s cubic-bezier(.4,0,.2,1),transform .28s cubic-bezier(.4,0,.2,1);
+    }
+    .mob-nav.open{opacity:1;transform:translateY(0);pointer-events:all}
+    .mob-nl{
+      display:flex;align-items:center;
+      padding:13px 16px;border-radius:10px;
+      font-size:16px;font-weight:500;
+      color:#8899b0;text-decoration:none;
+      transition:all .18s;border:1px solid transparent;
+    }
+    .mob-nl:hover{color:#e2eaf5;background:#0f1520;border-color:#1a2535}
+    .mob-nl.active{color:#7aadff;background:#0a1830;border-color:rgba(79,142,255,.2)}
+
+    /* Dark overlay behind drawer */
+    .overlay{display:none;position:fixed;inset:0;z-index:198;background:rgba(0,0,0,.5)}
+    .overlay.open{display:block}
+
+    /* Show hamburger + drawer only on mobile, hide desktop nav */
+    @media(max-width:768px){
+      nav{display:none}
+      .ham{display:flex}
+      .mob-nav{display:flex}
+    }
   </style>
 </head>
 
@@ -89,6 +149,10 @@
     <div class="orb o3"></div>
   </div>
   <div class="bg-grid"></div>
+
+  <!-- overlay for mobile drawer -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
   <header>
     <div class="hdr">
       <a class="logo" href="/">
@@ -100,8 +164,23 @@
         <a class="nl" href="/analytics"><span>Analytics</span></a>
         <a class="nl" href="/about"><span>About</span></a>
       </nav>
+      <!-- 3-line hamburger button (mobile only) -->
+      <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
     </div>
   </header>
+
+  <!-- mobile slide drawer -->
+  <div class="mob-nav" id="mobNav">
+    <a class="mob-nl active" href="/">Home</a>
+    <a class="mob-nl" href="/detect">Detect</a>
+    <a class="mob-nl" href="/analytics">Analytics</a>
+    <a class="mob-nl" href="/about">About</a>
+  </div>
+
   <div class="wrap">
     <div class="hero fu">
       <h1>Your Mail <br><span class="gr">Our Prediction</span></h1> 
@@ -142,11 +221,30 @@
       </div>
     </div>
   </div>
+
   <script>
     fetch('/stats').then(r => r.json()).then(d => {
       const mi = d.model || {};
       if (mi.val_f1) document.getElementById('st-acc').textContent = (mi.val_f1 * 100).toFixed(1) + '%';
     }).catch(() => {});
+
+    function toggleMenu(){
+      document.getElementById('ham').classList.contains('open') ? closeMenu() : openMenu();
+    }
+    function openMenu(){
+      document.getElementById('ham').classList.add('open');
+      document.getElementById('mobNav').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      document.getElementById('ham').classList.remove('open');
+      document.getElementById('mobNav').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.mob-nl').forEach(l => l.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
   </script>
 </body>
 

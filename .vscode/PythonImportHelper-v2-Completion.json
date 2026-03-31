@@ -278,7 +278,7 @@
         "kind": 6,
         "importPath": "model.model",
         "description": "model.model",
-        "peekOfCode": "class SpamBiLSTM(nn.Module):\n    def __init__(self, vocab_size, embed_dim=128, hidden_dim=256,\n                 num_layers=2, dropout=0.4, num_classes=2, pad_idx=0):\n        super().__init__()\n        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=pad_idx)\n        self.lstm = nn.LSTM(embed_dim, hidden_dim, num_layers,\n                            batch_first=True, dropout=dropout if num_layers > 1 else 0.0,\n                            bidirectional=True)\n        self.dropout = nn.Dropout(dropout)\n        self.fc = nn.Linear(hidden_dim * 2, num_classes)",
+        "peekOfCode": "class SpamBiLSTM(nn.Module):\n    def __init__(self, vocab_size, embed_dim=128, hidden_dim=256,\n                num_layers=2, dropout=0.4, num_classes=2, pad_idx=0):\n        super().__init__()\n        self.embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=pad_idx)\n        self.lstm = nn.LSTM(embed_dim, hidden_dim, num_layers,\n                            batch_first=True, dropout=dropout if num_layers > 1 else 0.0,\n                            bidirectional=True)\n        self.dropout = nn.Dropout(dropout)\n        self.fc = nn.Linear(hidden_dim * 2, num_classes)",
         "detail": "model.model",
         "documentation": {}
     },
